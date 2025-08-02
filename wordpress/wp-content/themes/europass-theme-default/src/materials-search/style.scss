@@ -1,0 +1,24 @@
+.search-block {
+	padding: 1rem;
+
+	&__input {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		border: 1px solid #ccc;
+		border-radius: 6px;
+		font-size: 16px;
+
+		&:focus {
+			outline: none;
+			border-color: #007cba;
+			box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.3);
+		}
+	}
+
+	&__empty-message {
+		margin-top: 0.75rem;
+		font-style: italic;
+		color: #666;
+		display: none;
+	}
+}

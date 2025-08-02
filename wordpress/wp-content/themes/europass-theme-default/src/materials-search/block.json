@@ -1,0 +1,24 @@
+{
+  "apiVersion": 2,
+  "name": "custom/search-entries",
+  "title": "Пошук у блоках",
+  "category": "common",
+  "icon": "search",
+  "description": "Динамічний пошук по полях інших блоків у редакторі",
+  "attributes": {
+    "targetBlocks": {
+      "type": "string",
+      "default": "custom/file-card"
+    },
+    "searchFields": {
+      "type": "string",
+      "default": "title"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+  	"viewScript": "file:./frontend.js"
+}

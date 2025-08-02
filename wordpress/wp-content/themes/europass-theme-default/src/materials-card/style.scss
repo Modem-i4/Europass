@@ -1,0 +1,73 @@
+.file-card-editor {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	background: #f6f6f9;
+	border-radius: 999px;
+
+	.thumbnail-wrapper {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: #e2e2e2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		overflow: hidden;
+
+		.placeholder {
+			font-size: 20px;
+		}
+
+		.thumbnail {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+	}
+
+	.fields {
+		flex-grow: 1;
+
+		.components-base-control {
+			margin-bottom: 0;
+		}
+
+		.components-button {
+			margin-top: 0.5rem;
+		}
+	}
+
+	.remove-button {
+		color: red;
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-size: 1.5rem;
+	}
+}
+
+.file-card {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	background: #f4f4f8;
+	padding: 1rem;
+	border-radius: 999px;
+	text-decoration: none;
+
+	.thumbnail {
+		width: 48px;
+		height: 48px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	.file-title {
+		font-weight: bold;
+		color: #333;
+	}
+}

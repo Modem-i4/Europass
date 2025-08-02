@@ -1,0 +1,26 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/materials-search/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+.search-block {
+  padding: 1rem;
+}
+.search-block__input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+.search-block__input:focus {
+  outline: none;
+  border-color: #007cba;
+  box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.3);
+}
+.search-block__empty-message {
+  margin-top: 0.75rem;
+  font-style: italic;
+  color: #666;
+  display: none;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
