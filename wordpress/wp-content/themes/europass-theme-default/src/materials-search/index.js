@@ -6,7 +6,7 @@ import metadata from './block.json';
 
 registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
-		const { targetBlocks, searchFields } = attributes;
+		const { targetBlocks } = attributes;
 
 		return (
 			<div {...useBlockProps({ className: 'search-block' })}>
@@ -20,16 +20,10 @@ registerBlockType(metadata.name, {
 				<InspectorControls>
 					<PanelBody title="Налаштування пошуку" initialOpen={true}>
 						<TextControl
-							label="Типи блоків (через кому)"
-							help="Наприклад: custom/file-card"
+							label="Селектори блоків (через кому)"
+							help="Наприклад: .file-card, .qa-item"
 							value={targetBlocks}
 							onChange={(val) => setAttributes({ targetBlocks: val })}
-						/>
-						<TextControl
-							label="Поля для пошуку (через кому)"
-							help="Наприклад: title,file"
-							value={searchFields}
-							onChange={(val) => setAttributes({ searchFields: val })}
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -38,13 +32,12 @@ registerBlockType(metadata.name, {
 	},
 
 	save: ({ attributes }) => {
-		const { targetBlocks, searchFields } = attributes;
+		const { targetBlocks } = attributes;
 
 		return (
 			<div
 				className="search-block"
 				data-target-blocks={targetBlocks}
-				data-search-fields={searchFields}
 			>
 				<input
 					type="search"

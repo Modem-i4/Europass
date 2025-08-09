@@ -8,11 +8,7 @@
   "attributes": {
     "targetBlocks": {
       "type": "string",
-      "default": "parts-blocks/file-card"
-    },
-    "searchFields": {
-      "type": "string",
-      "default": "title"
+      "default": ".qa-item"
     }
   },
   "supports": {

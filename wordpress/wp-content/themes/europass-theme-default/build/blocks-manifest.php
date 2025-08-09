@@ -161,11 +161,7 @@ return array(
 		'attributes' => array(
 			'targetBlocks' => array(
 				'type' => 'string',
-				'default' => 'parts-blocks/file-card'
-			),
-			'searchFields' => array(
-				'type' => 'string',
-				'default' => 'title'
+				'default' => '.qa-item'
 			)
 		),
 		'supports' => array(
@@ -228,5 +224,46 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'qa-block' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'design-blocks/qa-block',
+		'title' => 'Блок Q&A',
+		'category' => 'design-blocks',
+		'icon' => 'editor-help',
+		'description' => 'Питання‑відповідь з анімованою стрілкою та акордеоном.',
+		'version' => '0.1.0',
+		'keywords' => array(
+			'faq',
+			'q&a',
+			'accordion'
+		),
+		'supports' => array(
+			'html' => false,
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'attributes' => array(
+			'question' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.qa-question'
+			),
+			'answer' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.qa-answer'
+			),
+			'open' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'viewScript' => 'file:./frontend.js',
+		'style' => 'file:./style-index.css'
 	)
 );

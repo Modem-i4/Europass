@@ -2,13 +2,13 @@
 /*!******************************************!*\
   !*** ./src/materials-search/frontend.js ***!
   \******************************************/
-console.log('LOADED SEARCH!');
 document.addEventListener('DOMContentLoaded', function () {
   const searchBlock = document.querySelector('.search-block');
   if (!searchBlock) return;
   const input = searchBlock.querySelector('.search-block__input');
   const emptyMessage = searchBlock.querySelector('.search-block__empty-message');
-  const cards = document.querySelectorAll('.file-card');
+  const targetSelector = searchBlock.dataset.targetBlocks || '.materials-card';
+  const cards = document.querySelectorAll(targetSelector);
   if (!input || !emptyMessage) return;
   input.addEventListener('input', function () {
     const query = this.value.trim().toLowerCase();

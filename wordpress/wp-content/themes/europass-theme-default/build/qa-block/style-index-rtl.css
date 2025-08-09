@@ -1,0 +1,108 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/qa-block/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* корінь блоку */
+/* один елемент Q&A */
+.qa-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #f3f4f6;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* summary + стрілка */
+.qa-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #1f2937;
+  background: #e5e7eb;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: 100%;
+  text-align: right;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.qa-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* chevron-стрілка (ВНИЗ у закритому) — як ти хотів */
+.qa-arrow {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  position: relative;
+}
+
+.qa-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #6b7280;
+  border-bottom: 2px solid #6b7280;
+  transform: rotate(45deg); /* вниз */
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+/* контент — CSS Grid акордеон БЕЗ ривків */
+.qa-content {
+  /* візуал */
+  padding: 0 50px 0 18px; /* top/bottom = 0 в закритому */
+  color: #374151;
+  line-height: 1.6;
+  /* магія: анімуємо рядок grid */
+  display: grid;
+  grid-template-rows: 0fr; /* закрито */
+  transition: grid-template-rows 0.35s ease, padding 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.qa-content-inner {
+  overflow: hidden;
+} /* саме тут відбувається обрізання */
+/* відкритий стан класом */
+.qa-item.is-open {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.qa-item.is-open > .qa-summary {
+  background: #9ca3af;
+  color: #ffffff;
+}
+
+.qa-item.is-open .qa-arrow::before {
+  transform: rotate(-45deg);
+  border-color: #ffffff;
+}
+
+.qa-item.is-open .qa-content {
+  grid-template-rows: 1fr; /* відкрито */
+  padding: 12px 50px 16px 18px;
+  opacity: 1;
+}
+
+/* hover-ефект */
+.qa-summary:hover .qa-arrow::before {
+  border-color: #111827;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qa-item, .qa-summary, .qa-arrow::before, .qa-content {
+    transition: none !important;
+  }
+}

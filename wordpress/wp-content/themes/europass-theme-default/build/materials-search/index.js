@@ -8,7 +8,7 @@
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"parts-blocks/search-entries","title":"Пошук у блоках","category":"parts-blocks","icon":"search","description":"Динамічний пошук по полях інших блоків у редакторі","attributes":{"targetBlocks":{"type":"string","default":"parts-blocks/file-card"},"searchFields":{"type":"string","default":"title"}},"supports":{"html":false},"editorScript":"file:./index.js","style":"file:./style-index.css","viewScript":"file:./frontend.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"parts-blocks/search-entries","title":"Пошук у блоках","category":"parts-blocks","icon":"search","description":"Динамічний пошук по полях інших блоків у редакторі","attributes":{"targetBlocks":{"type":"string","default":".qa-item"}},"supports":{"html":false},"editorScript":"file:./index.js","style":"file:./style-index.css","viewScript":"file:./frontend.js"}');
 
 /***/ }),
 
@@ -41,8 +41,7 @@ __webpack_require__.r(__webpack_exports__);
     setAttributes
   }) => {
     const {
-      targetBlocks,
-      searchFields
+      targetBlocks
     } = attributes;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
@@ -54,24 +53,17 @@ __webpack_require__.r(__webpack_exports__);
         placeholder: "\u041F\u043E\u0448\u0443\u043A\u2026",
         disabled: true
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
           title: "\u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u043F\u043E\u0448\u0443\u043A\u0443",
           initialOpen: true,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: "\u0422\u0438\u043F\u0438 \u0431\u043B\u043E\u043A\u0456\u0432 (\u0447\u0435\u0440\u0435\u0437 \u043A\u043E\u043C\u0443)",
-            help: "\u041D\u0430\u043F\u0440\u0438\u043A\u043B\u0430\u0434: custom/file-card",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: "\u0421\u0435\u043B\u0435\u043A\u0442\u043E\u0440\u0438 \u0431\u043B\u043E\u043A\u0456\u0432 (\u0447\u0435\u0440\u0435\u0437 \u043A\u043E\u043C\u0443)",
+            help: "\u041D\u0430\u043F\u0440\u0438\u043A\u043B\u0430\u0434: .file-card, .qa-item",
             value: targetBlocks,
             onChange: val => setAttributes({
               targetBlocks: val
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: "\u041F\u043E\u043B\u044F \u0434\u043B\u044F \u043F\u043E\u0448\u0443\u043A\u0443 (\u0447\u0435\u0440\u0435\u0437 \u043A\u043E\u043C\u0443)",
-            help: "\u041D\u0430\u043F\u0440\u0438\u043A\u043B\u0430\u0434: title,file",
-            value: searchFields,
-            onChange: val => setAttributes({
-              searchFields: val
-            })
-          })]
+          })
         })
       })]
     });
@@ -80,13 +72,11 @@ __webpack_require__.r(__webpack_exports__);
     attributes
   }) => {
     const {
-      targetBlocks,
-      searchFields
+      targetBlocks
     } = attributes;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "search-block",
       "data-target-blocks": targetBlocks,
-      "data-search-fields": searchFields,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
         type: "search",
         className: "search-block__input",
