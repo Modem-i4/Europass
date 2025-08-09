@@ -1,6 +1,38 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'add-block-btn' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 2,
+		'name' => 'parts-blocks/add-block-btn',
+		'title' => 'Додати блок нижче',
+		'category' => 'parts-blocks',
+		'icon' => 'plus',
+		'description' => 'Кнопка для додавання блоку за іменем під собою',
+		'supports' => array(
+			'html' => false,
+			'lock' => true
+		),
+		'attributes' => array(
+			'lock' => array(
+				'type' => 'object',
+				'default' => array(
+					'move' => true,
+					'remove' => true
+				)
+			),
+			'blockName' => array(
+				'type' => 'string',
+				'default' => 'parts-blocks/materials-card'
+			),
+			'buttonLabel' => array(
+				'type' => 'string',
+				'default' => '➕ додати матеріал'
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css'
+	),
 	'examp-full' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -71,36 +103,32 @@ return array(
 	),
 	'materials-add' => array(
 		'apiVersion' => 2,
-		'name' => 'custom/add-material-button',
+		'name' => 'parts-blocks/add-block-btn',
 		'title' => 'Додати матеріал',
-		'category' => 'common',
+		'category' => 'parts-blocks',
 		'icon' => 'plus',
 		'description' => 'Кнопка для додавання нового блоку матеріалу',
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'lock' => true
+		),
+		'attributes' => array(
+			'lock' => array(
+				'type' => 'object',
+				'default' => array(
+					'move' => true,
+					'remove' => true
+				)
+			)
 		),
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
-	'materials-add copy' => array(
-		'apiVersion' => 2,
-		'name' => 'custom/add-material-button',
-		'title' => 'Додати матеріал',
-		'category' => 'common',
-		'icon' => 'plus',
-		'description' => 'Кнопка для додавання нового блоку матеріалу',
-		'supports' => array(
-			'html' => false
-		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./frontend.js'
-	),
 	'materials-card' => array(
 		'apiVersion' => 2,
-		'name' => 'custom/file-card',
+		'name' => 'parts-blocks/materials-card',
 		'title' => 'Картка з файлом',
-		'category' => 'common',
+		'category' => 'parts-blocks',
 		'icon' => 'media-document',
 		'description' => 'Картка з назвою, зображенням та файлом.',
 		'attributes' => array(
@@ -125,15 +153,15 @@ return array(
 	),
 	'materials-search' => array(
 		'apiVersion' => 2,
-		'name' => 'custom/search-entries',
+		'name' => 'parts-blocks/search-entries',
 		'title' => 'Пошук у блоках',
-		'category' => 'common',
+		'category' => 'parts-blocks',
 		'icon' => 'search',
 		'description' => 'Динамічний пошук по полях інших блоків у редакторі',
 		'attributes' => array(
 			'targetBlocks' => array(
 				'type' => 'string',
-				'default' => 'custom/file-card'
+				'default' => 'parts-blocks/file-card'
 			),
 			'searchFields' => array(
 				'type' => 'string',
@@ -146,6 +174,40 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./frontend.js'
+	),
+	'news-slider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'design-blocks/news-slider',
+		'version' => '0.1.0',
+		'title' => 'Слайдер новин',
+		'category' => 'design-blocks',
+		'icon' => 'slides',
+		'description' => 'Глобальний блок-слайдер для новин',
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'postsToShow' => array(
+				'type' => 'number',
+				'default' => 6
+			),
+			'slidesPerView' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'fallbackImage' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'file:./script.css',
+			'file:./style-index.css'
+		),
+		'viewScript' => 'file:./script.js',
+		'render' => 'file:./render.php'
 	),
 	'php-example-block' => array(
 		'apiVersion' => 2,

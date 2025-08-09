@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "parts-blocks/add-block-btn",
+  "title": "Додати блок нижче",
+  "category": "parts-blocks",
+  "icon": "plus",
+  "description": "Кнопка для додавання блоку за іменем під собою",
+  "supports": {
+    "html": false,
+    "lock": true
+  },
+  "attributes": {
+    "lock": {
+      "type": "object",
+      "default": {
+        "move": true,
+        "remove": true
+      }
+    },
+    "blockName": {
+      "type": "string",
+      "default": "parts-blocks/materials-card"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "➕ додати матеріал"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css"
+}

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	input.addEventListener('input', function () {
 		const query = this.value.trim().toLowerCase();
 
-		let visibleCount = 0;
+		let visibleCount = 0; 
 
 		cards.forEach(card => {
 			const text = card.textContent.toLowerCase();

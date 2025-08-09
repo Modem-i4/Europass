@@ -1,8 +1,8 @@
 {
   "apiVersion": 2,
-  "name": "custom/file-card",
+  "name": "parts-blocks/materials-card",
   "title": "Картка з файлом",
-  "category": "common",
+  "category": "parts-blocks",
   "icon": "media-document",
   "description": "Картка з назвою, зображенням та файлом.",
   "attributes": {

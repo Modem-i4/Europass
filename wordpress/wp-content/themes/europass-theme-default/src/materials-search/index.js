@@ -2,8 +2,9 @@ import { registerBlockType } from '@wordpress/blocks';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { TextControl, PanelBody } from '@wordpress/components';
 import './style.scss';
+import metadata from './block.json';
 
-registerBlockType('custom/search-entries', {
+registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes }) => {
 		const { targetBlocks, searchFields } = attributes;
 

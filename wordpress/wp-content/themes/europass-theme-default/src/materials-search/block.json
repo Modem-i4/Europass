@@ -1,14 +1,14 @@
 {
   "apiVersion": 2,
-  "name": "custom/search-entries",
+  "name": "parts-blocks/search-entries",
   "title": "Пошук у блоках",
-  "category": "common",
+  "category": "parts-blocks",
   "icon": "search",
   "description": "Динамічний пошук по полях інших блоків у редакторі",
   "attributes": {
     "targetBlocks": {
       "type": "string",
-      "default": "custom/file-card"
+      "default": "parts-blocks/file-card"
     },
     "searchFields": {
       "type": "string",
@@ -20,5 +20,5 @@
   },
   "editorScript": "file:./index.js",
 	"style": "file:./style-index.css",
-  	"viewScript": "file:./frontend.js"
+  "viewScript": "file:./frontend.js"
 }

@@ -1,15 +1,27 @@
 <?php
 
-function register_custom_block_category( $categories ) {
-    $new_category = array(
-        'slug'  => 'custom-blocks',
-        'title' => __( 'Кастомні блоки', 'custom-blocks' ),
-        'icon'  => 'star-filled',
+function register_custom_block_categories( $categories ) {
+    $new_categories = array(
+        array(
+            'slug'  => 'design-blocks',
+            'title' => __( 'Легкий пизайн', 'design-blocks' ),
+            'icon'  => 'star-filled',
+        ),
+        array(
+            'slug'  => 'page-blocks',
+            'title' => __( 'Блоки сторінок', 'page-blocks' ),
+            'icon'  => 'layout',
+        ),
+        array(
+            'slug'  => 'parts-blocks',
+            'title' => __( 'Складові блоки', 'parts-blocks' ),
+            'icon'  => 'archive',
+        ),
     );
-    array_unshift( $categories, $new_category );
-    return $categories;
+
+    return array_merge( $new_categories, $categories );
 }
-add_filter( 'block_categories_all', 'register_custom_block_category', 10, 1 );
+add_filter( 'block_categories_all', 'register_custom_block_categories', 10, 1 );
 
 function init_custom_blocks() {
     wp_register_block_types_from_metadata_collection(

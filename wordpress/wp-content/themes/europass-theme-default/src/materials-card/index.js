@@ -10,8 +10,8 @@ import {
 } from '@wordpress/components';
 import { trash } from '@wordpress/icons';
 import metadata from './block.json';
-import './style.scss';
-
+import './style.scss'; 
+ 
 registerBlockType(metadata.name, {
 	edit: ({ attributes, setAttributes, isSelected, onReplace }) => {
 		const { title, file, imageUrl } = attributes;
