@@ -1,0 +1,14 @@
+.contact-card .wp-block-media-text {
+    grid-template-columns: 6% auto !important;
+}
+.contact-card .wp-social-link {
+    box-shadow: 0px 5px 5px 0px #00000040;
+    transition: 0.3s ease;
+    background-color: #6c6c6c;
+}
+
+.contact-card .wp-social-link:hover {
+    background-color: #575756;
+    box-shadow: 0px 7px 7px 0px #00000040;
+    transform: scale(1);
+}
