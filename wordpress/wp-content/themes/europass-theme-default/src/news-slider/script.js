@@ -16,11 +16,13 @@ export function initNewsSlider(root, opts = {}) {
 
   const isEditor = !!opts.isEditor || sliderEl.classList.contains('is-editor');
   const slidesPerViewAttr  = sliderEl.dataset.slidesPerView;
+  const slidesGapPxAttr  = sliderEl.dataset.slidesGapPx;
   const baseSlidesPerView  = slidesPerViewAttr ? parseInt(slidesPerViewAttr, 10) : 3;
+  const slidesGapPx  = slidesGapPxAttr ? parseInt(slidesGapPxAttr, 10) : 25;
 
   new Swiper(sliderEl, {
     slidesPerView: baseSlidesPerView,
-    spaceBetween: 16,
+    spaceBetween: slidesGapPx,
     allowTouchMove: !isEditor,
     simulateTouch: !isEditor,
     preventClicks: false,
@@ -34,8 +36,8 @@ export function initNewsSlider(root, opts = {}) {
       clickable: true,
     },
     breakpoints: {
-      0:   { slidesPerView: 1, slidesPerGroup: 1 },
-      768: { slidesPerView: 2, slidesPerGroup: 2 },
+      0:   { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
       1024:{ slidesPerView: baseSlidesPerView },
     },
     watchOverflow: true,

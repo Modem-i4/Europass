@@ -5,3 +5,8 @@
 a.wp-block-tiptip-hyperlink-group-block {
     text-decoration: none;
 }
+
+.angled-section {
+  background: #f3f4f6;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}

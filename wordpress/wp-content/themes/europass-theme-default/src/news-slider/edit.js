@@ -16,7 +16,7 @@ import { useEffect, useRef } from '@wordpress/element';
 import { initNewsSlider } from './script.js';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-  const { postsToShow = 6, slidesPerView = 3, fallbackImage = '' } = attributes;
+  const { postsToShow = 6, slidesPerView = 3, slidesGapPx = 25, fallbackImage = '' } = attributes;
 
   const posts = useSelect(
     (select) =>
@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     setTimeout(() => {
       initNewsSlider(containerRef.current, { isEditor: true });
     }, 0);
-  }, [posts, slidesPerView]);
+  }, [posts, slidesPerView, slidesGapPx]);
 
   return (
     <>
@@ -68,6 +68,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
             onChange={(val) => setAttributes({ slidesPerView: val })}
             min={1}
             max={3}
+          />
+          <RangeControl
+            label="Додаткова відстань між слайдами (px)"
+            value={slidesGapPx}
+            onChange={(val) => setAttributes({ slidesGapPx: val })}
+            min={0}
+            max={90}
           />
         </PanelBody>
 
@@ -110,6 +117,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         <div
           className={`news-slider swiper is-editor slides-${slidesPerView}`}
           data-slides-per-view={slidesPerView}
+          data-slides-gap-px={slidesGapPx}
         >
           <div className="swiper-wrapper">
             {!posts && <Spinner />}
@@ -122,23 +130,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
                 return (
                   <div key={post.id} className="news-latest-card swiper-slide">
-                    <div className="card-image-wrapper">
-                      {image ? (
-                        <img src={image} alt={title} className="card-image" />
-                      ) : fallbackImage ? (
-                        <img src={fallbackImage} alt={title} className="card-image" />
-                      ) : (
-                        <div className="card-image-placeholder" />
-                      )}
-                    </div>
+                    <div class="card-wrapper">
+                      <div className="card-image-wrapper">
+                        {image ? (
+                          <img src={image} alt={title} className="card-image" />
+                        ) : fallbackImage ? (
+                          <img src={fallbackImage} alt={title} className="card-image" />
+                        ) : (
+                          <div className="card-image-placeholder" />
+                        )}
+                      </div>
 
-                    <div className="card-gradient-bar" />
+                      <div className="card-gradient-bar" />
 
-                    <div className="card-content">
-                      <h3 className="card-title" dangerouslySetInnerHTML={{ __html: title }} />
-                      <div className="card-meta">
-                        <div className="card-type">Публікація</div>
-                        <div className="card-date">{humanReadableDiff(post.date)}</div>
+                      <div className="card-content">
+                        <h3 className="card-title" dangerouslySetInnerHTML={{ __html: title }} />
+                        <div className="card-meta">
+                          <div className="card-type">Публікація</div>
+                          <div className="card-date">{humanReadableDiff(post.date)}</div>
+                        </div>
                       </div>
                     </div>
                   </div>

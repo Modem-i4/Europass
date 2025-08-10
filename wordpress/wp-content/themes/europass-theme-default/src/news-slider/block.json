@@ -19,6 +19,10 @@
       "type": "number",
       "default": 3
     },
+    "slidesGapPx": {
+      "type": "number",
+      "default": 25
+    },
     "fallbackImage": {
       "type": "string",
       "default": ""

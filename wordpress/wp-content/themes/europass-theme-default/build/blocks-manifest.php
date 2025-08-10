@@ -101,29 +101,6 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./frontend.js'
 	),
-	'materials-add' => array(
-		'apiVersion' => 2,
-		'name' => 'parts-blocks/add-block-btn',
-		'title' => 'Додати матеріал',
-		'category' => 'parts-blocks',
-		'icon' => 'plus',
-		'description' => 'Кнопка для додавання нового блоку матеріалу',
-		'supports' => array(
-			'html' => false,
-			'lock' => true
-		),
-		'attributes' => array(
-			'lock' => array(
-				'type' => 'object',
-				'default' => array(
-					'move' => true,
-					'remove' => true
-				)
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css'
-	),
 	'materials-card' => array(
 		'apiVersion' => 2,
 		'name' => 'parts-blocks/materials-card',
@@ -191,6 +168,10 @@ return array(
 			'slidesPerView' => array(
 				'type' => 'number',
 				'default' => 3
+			),
+			'slidesGapPx' => array(
+				'type' => 'number',
+				'default' => 25
 			),
 			'fallbackImage' => array(
 				'type' => 'string',

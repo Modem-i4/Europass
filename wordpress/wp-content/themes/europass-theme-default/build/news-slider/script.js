@@ -10701,10 +10701,12 @@ function initNewsSlider(root, opts = {}) {
   if (!sliderEl || sliderEl.classList.contains('swiper-initialized')) return;
   const isEditor = !!opts.isEditor || sliderEl.classList.contains('is-editor');
   const slidesPerViewAttr = sliderEl.dataset.slidesPerView;
+  const slidesGapPxAttr = sliderEl.dataset.slidesGapPx;
   const baseSlidesPerView = slidesPerViewAttr ? parseInt(slidesPerViewAttr, 10) : 3;
+  const slidesGapPx = slidesGapPxAttr ? parseInt(slidesGapPxAttr, 10) : 25;
   new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](sliderEl, {
     slidesPerView: baseSlidesPerView,
-    spaceBetween: 16,
+    spaceBetween: slidesGapPx,
     allowTouchMove: !isEditor,
     simulateTouch: !isEditor,
     preventClicks: false,
@@ -10719,12 +10721,10 @@ function initNewsSlider(root, opts = {}) {
     },
     breakpoints: {
       0: {
-        slidesPerView: 1,
-        slidesPerGroup: 1
+        slidesPerView: 1
       },
       768: {
-        slidesPerView: 2,
-        slidesPerGroup: 2
+        slidesPerView: 2
       },
       1024: {
         slidesPerView: baseSlidesPerView

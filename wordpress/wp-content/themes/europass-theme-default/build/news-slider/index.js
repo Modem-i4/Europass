@@ -10623,7 +10623,7 @@ __webpack_require__.r(__webpack_exports__);
   \************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"design-blocks/news-slider","version":"0.1.0","title":"Слайдер новин","category":"design-blocks","icon":"slides","description":"Глобальний блок-слайдер для новин","supports":{"html":false},"attributes":{"postsToShow":{"type":"number","default":6},"slidesPerView":{"type":"number","default":3},"fallbackImage":{"type":"string","default":""}},"editorScript":"file:./index.js","style":["file:./script.css","file:./style-index.css"],"viewScript":"file:./script.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"design-blocks/news-slider","version":"0.1.0","title":"Слайдер новин","category":"design-blocks","icon":"slides","description":"Глобальний блок-слайдер для новин","supports":{"html":false},"attributes":{"postsToShow":{"type":"number","default":6},"slidesPerView":{"type":"number","default":3},"slidesGapPx":{"type":"number","default":25},"fallbackImage":{"type":"string","default":""}},"editorScript":"file:./index.js","style":["file:./script.css","file:./style-index.css"],"viewScript":"file:./script.js","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -10662,6 +10662,7 @@ function Edit({
   const {
     postsToShow = 6,
     slidesPerView = 3,
+    slidesGapPx = 25,
     fallbackImage = ''
   } = attributes;
   const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select('core').getEntityRecords('postType', 'post', {
@@ -10689,7 +10690,7 @@ function Edit({
         isEditor: true
       });
     }, 0);
-  }, [posts, slidesPerView]);
+  }, [posts, slidesPerView, slidesGapPx]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
@@ -10710,6 +10711,14 @@ function Edit({
           }),
           min: 1,
           max: 3
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.RangeControl, {
+          label: "\u0414\u043E\u0434\u0430\u0442\u043A\u043E\u0432\u0430 \u0432\u0456\u0434\u0441\u0442\u0430\u043D\u044C \u043C\u0456\u0436 \u0441\u043B\u0430\u0439\u0434\u0430\u043C\u0438 (px)",
+          value: slidesGapPx,
+          onChange: val => setAttributes({
+            slidesGapPx: val
+          }),
+          min: 0,
+          max: 90
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
         title: "\u0417\u0430\u043F\u0430\u0441\u043D\u0435 \u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u043D\u044F",
@@ -10760,47 +10769,51 @@ function Edit({
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: `news-slider swiper is-editor slides-${slidesPerView}`,
         "data-slides-per-view": slidesPerView,
+        "data-slides-gap-px": slidesGapPx,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "swiper-wrapper",
           children: [!posts && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Spinner, {}), posts && posts.map(post => {
             var _post$title$rendered;
             const title = (_post$title$rendered = post.title?.rendered) !== null && _post$title$rendered !== void 0 ? _post$title$rendered : '';
             const image = post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.medium?.source_url || '';
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "news-latest-card swiper-slide",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                className: "card-image-wrapper",
-                children: image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                  src: image,
-                  alt: title,
-                  className: "card-image"
-                }) : fallbackImage ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                  src: fallbackImage,
-                  alt: title,
-                  className: "card-image"
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                  className: "card-image-placeholder"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                className: "card-gradient-bar"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                className: "card-content",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-                  className: "card-title",
-                  dangerouslySetInnerHTML: {
-                    __html: title
-                  }
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                class: "card-wrapper",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  className: "card-image-wrapper",
+                  children: image ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: image,
+                    alt: title,
+                    className: "card-image"
+                  }) : fallbackImage ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: fallbackImage,
+                    alt: title,
+                    className: "card-image"
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                    className: "card-image-placeholder"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  className: "card-gradient-bar"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                  className: "card-meta",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                    className: "card-type",
-                    children: "\u041F\u0443\u0431\u043B\u0456\u043A\u0430\u0446\u0456\u044F"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                    className: "card-date",
-                    children: humanReadableDiff(post.date)
+                  className: "card-content",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                    className: "card-title",
+                    dangerouslySetInnerHTML: {
+                      __html: title
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    className: "card-meta",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      className: "card-type",
+                      children: "\u041F\u0443\u0431\u043B\u0456\u043A\u0430\u0446\u0456\u044F"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      className: "card-date",
+                      children: humanReadableDiff(post.date)
+                    })]
                   })]
                 })]
-              })]
+              })
             }, post.id);
           })]
         })
@@ -10902,10 +10915,12 @@ function initNewsSlider(root, opts = {}) {
   if (!sliderEl || sliderEl.classList.contains('swiper-initialized')) return;
   const isEditor = !!opts.isEditor || sliderEl.classList.contains('is-editor');
   const slidesPerViewAttr = sliderEl.dataset.slidesPerView;
+  const slidesGapPxAttr = sliderEl.dataset.slidesGapPx;
   const baseSlidesPerView = slidesPerViewAttr ? parseInt(slidesPerViewAttr, 10) : 3;
+  const slidesGapPx = slidesGapPxAttr ? parseInt(slidesGapPxAttr, 10) : 25;
   new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](sliderEl, {
     slidesPerView: baseSlidesPerView,
-    spaceBetween: 16,
+    spaceBetween: slidesGapPx,
     allowTouchMove: !isEditor,
     simulateTouch: !isEditor,
     preventClicks: false,
@@ -10920,12 +10935,10 @@ function initNewsSlider(root, opts = {}) {
     },
     breakpoints: {
       0: {
-        slidesPerView: 1,
-        slidesPerGroup: 1
+        slidesPerView: 1
       },
       768: {
-        slidesPerView: 2,
-        slidesPerGroup: 2
+        slidesPerView: 2
       },
       1024: {
         slidesPerView: baseSlidesPerView
