@@ -1,0 +1,41 @@
+.profile-europas__hero-section__wrapper {
+	background: linear-gradient(
+		90deg,
+		#c65094 0%,
+		#4884c3 50%,
+		#6c3088 100%
+	) !important;
+	align-content: center;
+	color: white;
+	font-size: 16px;
+	font-weight: 400;
+}
+.profile-europas__hero-section__text-header {
+	font-size: 40px;
+	font-weight: 700;
+}
+
+/* 💻 MD – планшети горизонтально */
+@media (max-width: 1024px) {
+	.profile-europas__hero-section__wrapper {
+		font-size: 14px;
+	}
+	.profile-europas__hero-section__text-header {
+		font-size: 30px;
+	}
+}
+
+/* 📱 SM – планшети вертикально */
+@media (max-width: 768px) {
+	/* ... */
+}
+
+/* 📱 XS – великі телефони */
+@media (max-width: 576px) {
+	/* ... */
+}
+
+/* 📱 XXS – маленькі телефони (iPhone SE) */
+@media (max-width: 375px) {
+	/* ... */
+}

@@ -1,6 +1,13 @@
-@import url('/wp-content/themes/europass-theme-default/css/header.css');
+@import url("/wp-content/themes/europass-theme-default/css/fonts.css");
+@import url("/wp-content/themes/europass-theme-default/css/header.css");
+@import url("/wp-content/themes/europass-theme-default/css/hero.css");
+@import url("/wp-content/themes/europass-theme-default/css/about-europass.css");
+@import url("/wp-content/themes/europass-theme-default/css/main__about-europass.css");
+@import url("/wp-content/themes/europass-theme-default/css/main__tools-europass.css");
+@import url("/wp-content/themes/europass-theme-default/css/profile-europas__hero-section.css");
+@import url("/wp-content/themes/europass-theme-default/css/profile-europas__about.css");
+
 @import url('/wp-content/themes/europass-theme-default/css/search.css');
-@import url('/wp-content/themes/europass-theme-default/css/home/about_europass.css');
 
 a.wp-block-tiptip-hyperlink-group-block {
     text-decoration: none;

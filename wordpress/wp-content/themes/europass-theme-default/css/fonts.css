@@ -1,0 +1,33 @@
+@font-face {
+	font-family: 'Noto Sans';
+	src: url('/wp-content/themes/europass-theme-default/assets/fonts/NotoSans-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Noto Sans';
+	src: url('/wp-content/themes/europass-theme-default/assets/fonts/NotoSans-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/wp-content/themes/europass-theme-default/assets/fonts/OpenSans-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Noto Sans Display';
+	src: url('/wp-content/themes/europass-theme-default/assets/fonts/NotoSansDisplay-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+body {
+	font-family: 'Noto Sans', sans-serif;
+}
+

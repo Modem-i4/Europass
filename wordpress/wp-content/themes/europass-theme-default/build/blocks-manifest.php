@@ -246,5 +246,29 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'viewScript' => 'file:./frontend.js',
 		'style' => 'file:./style-index.css'
+	),
+	'search-button-img' => array(
+		'apiVersion' => 2,
+		'name' => 'custom-blocks/search-button-img',
+		'title' => 'Search Button with Image',
+		'category' => 'custom-blocks',
+		'icon' => 'search',
+		'description' => 'Кнопка з SVG або зображенням пошуку',
+		'attributes' => array(
+			'url' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'themeUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'inserter' => true
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style.css',
+		'editorStyle' => 'file:./editor.scss'
 	)
 );
