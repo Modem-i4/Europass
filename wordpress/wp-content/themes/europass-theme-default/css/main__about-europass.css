@@ -1,0 +1,91 @@
+.main__about-europass__faq__wrapper {
+	font-size: 18px;
+	font-weight: 700;
+	color: #575756;
+}
+.main__about-europass__faq {
+	padding: 30px 38px 30px 0px;
+}
+.main__about-europass__faq__icon-arow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 75px;
+	height: 100%;
+	min-width: 75px;
+}
+.main__about-europass__faq-activea-click {
+	background: #8e8e93 !important;
+	color: white !important;
+	border-radius: 40px 40px 0 0 !important;
+}
+.active-arow {
+}
+.main__about-europass__faq {
+}
+.main__about-europass__faq-active {
+	display: none !important;
+	background: #f2f2f7;
+	margin-top: 0 !important;
+	border-radius: 0 0 40px 40px !important;
+	padding: 35px 38px 35px 75px !important;
+}
+.main__about-europass__faq-active-visible {
+	display: flex !important;
+}
+.main__about-europass__faq-active__paragraph {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+/* 📺 XL – великі монітори */
+@media (max-width: 1440px) {
+	/* ... */
+}
+
+/* 💻 LG – ноутбуки */
+@media (max-width: 1280px) {
+	/* ... */
+}
+
+/* 💻 MD – планшети горизонтально */
+@media (max-width: 1024px) {
+	.main__about-europass__faq {
+		padding-left: 10px !important;
+	}
+	.main__about-europass__faq__icon-arow {
+		width: 45px;
+		height: 100%;
+		min-width: 45px;
+	}
+
+	.main__about-europass__faq__wrapper {
+		font-size: 16px;
+	}
+	.main__about-europass__faq__paragraph {
+		font-size: 14px;
+	}
+	.main__about-europass__faq-active {
+		font-size: 14px;
+		font-weight: 400;
+		padding: 15px 30px 25px 30px !important;
+	}
+	.main__about-europass__faq {
+		padding: 20px 20px 20px 0px;
+	}
+}
+
+/* 📱 SM – планшети вертикально */
+@media (max-width: 768px) {
+	/* ... */
+}
+
+/* 📱 XS – великі телефони */
+@media (max-width: 576px) {
+	/* ... */
+}
+
+/* 📱 XXS – маленькі телефони (iPhone SE) */
+@media (max-width: 375px) {
+	/* ... */
+}

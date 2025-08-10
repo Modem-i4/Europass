@@ -82,20 +82,6 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
-	'materials-add copy' => array(
-		'apiVersion' => 2,
-		'name' => 'custom/add-material-button',
-		'title' => 'Додати матеріал',
-		'category' => 'common',
-		'icon' => 'plus',
-		'description' => 'Кнопка для додавання нового блоку матеріалу',
-		'supports' => array(
-			'html' => false
-		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./frontend.js'
-	),
 	'materials-card' => array(
 		'apiVersion' => 2,
 		'name' => 'custom/file-card',
@@ -166,5 +152,29 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'search-button-img' => array(
+		'apiVersion' => 2,
+		'name' => 'custom-blocks/search-button-img',
+		'title' => 'Search Button with Image',
+		'category' => 'custom-blocks',
+		'icon' => 'search',
+		'description' => 'Кнопка з SVG або зображенням пошуку',
+		'attributes' => array(
+			'url' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'themeUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'inserter' => true
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style.css',
+		'editorStyle' => 'file:./editor.scss'
 	)
 );

@@ -32,3 +32,28 @@ add_action('after_setup_theme', function () {
     add_theme_support('editor-styles');
     add_editor_style('css/style.css');
 });
+
+function allow_svg_uploads( $mimes ) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter( 'upload_mimes', 'allow_svg_uploads' );
+
+
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_script(
+		'europass-theme-main-js',
+		get_template_directory_uri() . '/js/index.js',
+		[],
+		filemtime(get_template_directory() . '/js/index.js'),
+		true
+	);
+
+	// Додаємо атрибут type="module"
+	add_filter('script_loader_tag', function ($tag, $handle, $src) {
+		if ($handle === 'europass-theme-main-js') {
+			$tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+		}
+		return $tag;
+	}, 10, 3);
+});

@@ -1,0 +1,60 @@
+.main__tools-europass__wrapper {
+	color: #575756;
+	font-size: 16px;
+	font-weight: 700;
+}
+.main__tools-europass__wrapper * {
+}
+
+.main__tools-europass__header {
+	font-size: 40px;
+}
+.main__tools-europass__card-paragraph {
+	font-weight: 400;
+}
+.main__tools-europass__card {
+	/* width: 369px !important; */
+	justify-content: space-between;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	transition:
+		box-shadow 0.3s ease,
+		transform 0.3s ease;
+}
+.main__tools-europass__card:hover {
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+	transform: translateY(-15px);
+	z-index: 2;
+	background: #f2f2f7 !important;
+}
+.main__tools-europass__card-buttons-wrapper {
+}
+.main__tools-europass__card-button * {
+}
+.main__tools-europass__card-button a:hover {
+	background: white;
+	box-shadow: 0 0 0 2px #575756;
+	color: #575756;
+}
+.main__tools-europass__card-header {
+	font-size: 24px;
+}
+
+
+
+/* 📱 XS – великі телефони */
+@media (max-width: 576px) {
+  .main__tools-europass__header {
+	font-size: 30px;
+}
+  .main__tools-europass__card-header {
+    font-size: 20px;
+  }
+  .main__tools-europass__wrapper {
+    font-size: 14px;
+  }
+}
+
+/* 📱 XXS – маленькі телефони (iPhone SE) */
+@media (max-width: 375px) {
+  /* ... */
+}

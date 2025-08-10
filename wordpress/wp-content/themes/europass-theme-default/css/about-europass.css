@@ -1,0 +1,119 @@
+.about-europass__wrapper {
+	color: #575756 !important;
+	/* margin-bottom: 40px; */
+}
+.about-europass {
+	position: relative;
+}
+
+.about-europass__wrapper::before {
+	content: "";
+	position: absolute;
+	top: 40px; /* змістити вниз, як на макеті */
+	right: 0;
+	width: 27%;
+	height: 100%;
+	background-color: #f2f2f7; /* світло-сірий */
+	z-index: -1;
+	clip-path: polygon(0% 91%, 0% 9%, 100% 6%, 100% 94%);
+}
+.about-europass__header {
+	font-size: 40px;
+}
+.about-europass__content {
+	font-size: 16px;
+	margin-top: 40px;
+}
+
+.about-europass__content__text {
+	width: 50%;
+}
+.about-europass__img {
+	width: 50%;
+	clip-path: polygon(0% 100%, 8% 8%, 95% 0%, 100% 90%);
+	overflow: hidden;
+}
+
+/* 📺 XL – великі монітори */
+@media (max-width: 1440px) {
+	/* ... */
+}
+
+/* 💻 LG – ноутбуки */
+@media (max-width: 1280px) {
+	/* ... */
+}
+
+/* 💻 MD – планшети горизонтально */
+@media (max-width: 1024px) {
+	.about-europass__wrapper {
+		color: #575756 !important;
+	}
+	.about-europass__wrapper::before {
+		top: 26px;
+	}
+	.about-europass {
+	}
+	.about-europass__header {
+		font-size: 30px;
+	}
+	.about-europass__content {
+		font-size: 14px;
+		margin-top: 20px;
+	}
+
+	.about-europass__content__text {
+		width: 50%;
+	}
+	.about-europass__img {
+		width: 50%;
+		clip-path: polygon(0% 100%, 8% 8%, 95% 0%, 100% 90%);
+		overflow: hidden;
+	}
+}
+
+/* 📱 SM – планшети вертикально */
+@media (max-width: 768px) {
+	.about-europass__content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.about-europass__content__text {
+		width: 100%;
+	}
+	.about-europass__img {
+		width: 100%;
+		clip-path: polygon(0% 100%, 8% 8%, 95% 0%, 100% 90%);
+		overflow: hidden;
+	}
+
+	.about-europass__wrapper::before {
+		content: "";
+		position: absolute;
+		top: auto !important; /* змістити вниз, як на макеті */
+		bottom: -35px;
+		right: 0;
+		width: 46%;
+		height: 67vw;
+		background-color: #f2f2f7; /* світло-сірий */
+		z-index: -1;
+		clip-path: polygon(0% 91%, 0% 9%, 100% 6%, 100% 94%);
+	}
+}
+
+/* 📱 XS – великі телефони */
+@media (max-width: 576px) {
+	.about-europass__wrapper::before {
+		bottom: -35px;
+		height: 70vw;
+	}
+}
+
+/* 📱 XXS – маленькі телефони (iPhone SE) */
+@media (max-width: 375px) {
+	.about-europass__wrapper::before {
+		bottom: -30px;
+		height: 71vw;
+	}
+}
