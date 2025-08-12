@@ -1,0 +1,205 @@
+.footer-wrapper::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 140%;
+  	background: linear-gradient(90deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
+	bottom: 0;
+	left: 0;
+	z-index: -2;
+	clip-path: polygon(
+	0 8%,      /* верх-ліво нижче */
+	100% 0,    /* верх-право вище */
+	100% 100%, /* низ-право */
+	0 100%     /* низ-ліво */
+	);
+}	
+
+/****************************************************
+ * FOOTER NAV — повний CSS, строго під цю розмітку
+ * Desktop (≥961px): UL = row, LI = колонки, підменю статичні
+ * Mobile (≤960px): звичайний вертикальний список, підменю по кліку
+ ****************************************************/
+
+/* базові скидання тільки в footer */
+footer.wp-block-template-part nav.wp-block-navigation ul,
+footer.wp-block-template-part nav.wp-block-navigation li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ===================== DESKTOP (≥961px) ===================== */
+@media (min-width: 961px){
+
+  /* контейнер навігації у футері */
+  footer.wp-block-template-part nav.wp-block-navigation{
+    display: block !important;
+  }
+
+  /* верхній UL — РЯДКОМ + вирівнювання */
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: space-evenly !important;
+  }
+
+  /* колонка = верхній LI */
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation
+  > li.wp-block-navigation-item{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    min-width: 240px !important; /* піджени за потреби */
+  }
+
+  /* заголовок колонки */
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation
+  > li.wp-block-navigation-item > a.wp-block-navigation-item__content{
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    text-decoration: none !important;
+    padding: 0 !important;
+  }
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation
+  > li.wp-block-navigation-item > a.wp-block-navigation-item__content::after{
+    content: none !important;
+  }
+
+  /* ПІДМЕНЮ — завжди статичне під заголовком */
+  /* ховаємо кнопку-іконку */
+  footer.wp-block-template-part nav.wp-block-navigation
+  button.wp-block-navigation__submenu-icon.wp-block-navigation-submenu__toggle{
+    display: none !important;
+  }
+
+  /* базовий стан підменю */
+  footer.wp-block-template-part nav.wp-block-navigation
+  li.wp-block-navigation-item.has-child > ul.wp-block-navigation__submenu-container.wp-block-navigation-submenu{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    margin-top: 12px !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    z-index: auto !important;
+  }
+
+  /* прибити dropdown-поведінку на hover/focus */
+  footer.wp-block-template-part nav.wp-block-navigation
+  li.wp-block-navigation-item.has-child.open-on-hover-click:hover > ul.wp-block-navigation__submenu-container.wp-block-navigation-submenu,
+  footer.wp-block-template-part nav.wp-block-navigation
+  li.wp-block-navigation-item.has-child.open-on-hover-click:focus-within > ul.wp-block-navigation__submenu-container.wp-block-navigation-submenu{
+    display: flex !important;
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+}
+
+/* ===================== MOBILE (≤960px) ===================== */
+/* простий вертикальний список; підменю відкривається по кліку */
+@media (max-width: 960px){
+
+	footer .open-on-click.wp-block-navigation-submenu {
+		display: block !important;
+	}
+
+  /* контейнер у звичайному потоці */
+  footer.wp-block-template-part nav.wp-block-navigation{
+    display: block !important;
+  }
+
+  footer .wp-block-navigation-submenu__toggle .wp-block-navigation-item__label::after {
+	content: ' v';
+	font-size: xx-large;
+  }
+
+  /* верхній UL — КОЛОНКОЮ */
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+  }
+
+  /* елементи на всю ширину */
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation
+  > li.wp-block-navigation-item{
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* показати кнопку-іконку підменю */
+  footer.wp-block-template-part nav.wp-block-navigation
+  button.wp-block-navigation__submenu-icon.wp-block-navigation-submenu__toggle{
+    display: inline-flex !important;
+  }
+
+  /* підменю сховані за замовчуванням */
+  footer.wp-block-template-part nav.wp-block-navigation
+  li.wp-block-navigation-item.has-child > ul.wp-block-navigation__submenu-container.wp-block-navigation-submenu{
+    display: none !important;
+    position: static !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* коли aria-expanded="true" — показуємо */
+  footer.wp-block-template-part nav.wp-block-navigation
+  button.wp-block-navigation-submenu__toggle[aria-expanded="true"]
+  ~ ul.wp-block-navigation__submenu-container.wp-block-navigation-submenu{
+    display: block !important;
+  }
+  footer.wp-block-template-part nav.wp-block-navigation > ul.wp-block-navigation__container.wp-block-navigation
+  > li.wp-block-navigation-item > a.wp-block-navigation-item__content{
+    padding: 0 !important;
+  }
+
+  footer .wp-block-navigation-submenu {
+	border: 0;
+  }
+}
+
+footer .open-on-click.wp-block-navigation-submenu > .wp-block-navigation__submenu-icon {
+	display: none;
+}
+
+
+/* Якщо потрібен жовтий */
+footer .wp-block-navigation-item.current-menu-item 
+.wp-block-navigation-item__label {
+  color: #fff56e !important;
+}

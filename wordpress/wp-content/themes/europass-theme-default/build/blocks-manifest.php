@@ -8,7 +8,7 @@ return array(
 		'title' => 'Додати блок нижче',
 		'category' => 'parts-blocks',
 		'icon' => 'plus',
-		'description' => 'Кнопка для додавання блоку за іменем під собою',
+		'description' => 'Кнопка для додавання блоку або патерну під собою',
 		'supports' => array(
 			'html' => false,
 			'lock' => true
@@ -21,61 +21,33 @@ return array(
 					'remove' => true
 				)
 			),
+			'addMode' => array(
+				'type' => 'string',
+				'enum' => array(
+					'block',
+					'pattern'
+				),
+				'default' => 'block'
+			),
 			'blockName' => array(
 				'type' => 'string',
 				'default' => 'parts-blocks/materials-card'
 			),
+			'patternKey' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'buttonLabel' => array(
 				'type' => 'string',
 				'default' => '➕ додати матеріал'
+			),
+			'targetSelector' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
-	),
-	'examp-full' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'custom-blocks/examp-full',
-		'version' => '0.1.0',
-		'title' => 'Example Block',
-		'category' => 'custom-blocks',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'textdomain' => 'examp-full',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
-	),
-	'examp-full-2' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'custom-blocks/examp-full-2',
-		'version' => '0.1.0',
-		'title' => 'Example Block 2',
-		'category' => 'custom-blocks',
-		'icon' => 'smiley',
-		'description' => 'OPYS.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'textdomain' => 'examp-full-2',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
 	),
 	'form-checkbox' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -228,282 +200,6 @@ return array(
 		'viewScript' => 'file:./frontend.js',
 		'style' => 'file:./style-index.css'
 	),
-	'form-submit copy' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'parts-blocks/form-submit',
-		'version' => '0.1.0',
-		'title' => 'Надсилання форми',
-		'category' => 'parts-blocks',
-		'icon' => 'feedback',
-		'description' => 'Кнопка для надсилання полів з "Компонентів форми"',
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'submitText' => array(
-				'type' => 'string',
-				'default' => 'Надіслати'
-			),
-			'scopeClass' => array(
-				'type' => 'string',
-				'default' => '.form-scope'
-			),
-			'action' => array(
-				'type' => 'string',
-				'default' => '/'
-			),
-			'method' => array(
-				'type' => 'string',
-				'default' => 'POST'
-			),
-			'successMessage' => array(
-				'type' => 'string',
-				'default' => 'Форму надіслано успішно.'
-			),
-			'errorMessage' => array(
-				'type' => 'string',
-				'default' => 'Сталася помилка. Спробуйте ще раз.'
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'viewScript' => 'file:./frontend.js',
-		'style' => 'file:./style-index.css'
-	),
-	'hero-circle-overlayed' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'common/hero-circle-overlayed',
-		'version' => '0.1.0',
-		'title' => 'Hero Circle Overlayed',
-		'category' => 'common',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'imageUrl' => array(
-				'type' => 'string'
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./frontend.js'
-	),
-	'input-field' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'parts-blocks/form-submit',
-		'version' => '0.1.0',
-		'title' => 'Form Components',
-		'category' => 'parts-blocks',
-		'icon' => 'feedback',
-		'description' => 'Універсальні елементи форми: input / textarea / submit з відправкою через frontend.js',
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'variant' => array(
-				'type' => 'string',
-				'default' => 'input'
-			),
-			'label' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'name' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'placeholder' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'required' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'inputType' => array(
-				'type' => 'string',
-				'default' => 'text'
-			),
-			'rows' => array(
-				'type' => 'number',
-				'default' => 4
-			),
-			'submitText' => array(
-				'type' => 'string',
-				'default' => 'Надіслати'
-			),
-			'scopeClass' => array(
-				'type' => 'string',
-				'default' => '.form-scope'
-			),
-			'action' => array(
-				'type' => 'string',
-				'default' => '/'
-			),
-			'method' => array(
-				'type' => 'string',
-				'default' => 'POST'
-			),
-			'successMessage' => array(
-				'type' => 'string',
-				'default' => 'Форму надіслано успішно.'
-			),
-			'errorMessage' => array(
-				'type' => 'string',
-				'default' => 'Сталася помилка. Спробуйте ще раз.'
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'viewScript' => 'file:./frontend.js',
-		'style' => 'file:./style-index.css'
-	),
-	'input-field copy' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'parts-blocks/form-components',
-		'version' => '0.1.0',
-		'title' => 'Form Components',
-		'category' => 'parts-blocks',
-		'icon' => 'feedback',
-		'description' => 'Універсальні елементи форми: input / textarea / submit з відправкою через frontend.js',
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'variant' => array(
-				'type' => 'string',
-				'default' => 'input'
-			),
-			'label' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'name' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'placeholder' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'required' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'inputType' => array(
-				'type' => 'string',
-				'default' => 'text'
-			),
-			'rows' => array(
-				'type' => 'number',
-				'default' => 4
-			),
-			'submitText' => array(
-				'type' => 'string',
-				'default' => 'Надіслати'
-			),
-			'scopeClass' => array(
-				'type' => 'string',
-				'default' => '.form-scope'
-			),
-			'action' => array(
-				'type' => 'string',
-				'default' => '/'
-			),
-			'method' => array(
-				'type' => 'string',
-				'default' => 'POST'
-			),
-			'successMessage' => array(
-				'type' => 'string',
-				'default' => 'Форму надіслано успішно.'
-			),
-			'errorMessage' => array(
-				'type' => 'string',
-				'default' => 'Сталася помилка. Спробуйте ще раз.'
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'viewScript' => 'file:./frontend.js',
-		'style' => 'file:./style-index.css'
-	),
-	'input-submit' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'parts-blocks/form-components',
-		'version' => '0.1.0',
-		'title' => 'Form Components',
-		'category' => 'parts-blocks',
-		'icon' => 'feedback',
-		'description' => 'Універсальні елементи форми: input / textarea / submit з відправкою через frontend.js',
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'variant' => array(
-				'type' => 'string',
-				'default' => 'input'
-			),
-			'label' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'name' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'placeholder' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'required' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'inputType' => array(
-				'type' => 'string',
-				'default' => 'text'
-			),
-			'rows' => array(
-				'type' => 'number',
-				'default' => 4
-			),
-			'submitText' => array(
-				'type' => 'string',
-				'default' => 'Надіслати'
-			),
-			'scopeClass' => array(
-				'type' => 'string',
-				'default' => '.form-scope'
-			),
-			'action' => array(
-				'type' => 'string',
-				'default' => '/'
-			),
-			'method' => array(
-				'type' => 'string',
-				'default' => 'POST'
-			),
-			'successMessage' => array(
-				'type' => 'string',
-				'default' => 'Форму надіслано успішно.'
-			),
-			'errorMessage' => array(
-				'type' => 'string',
-				'default' => 'Сталася помилка. Спробуйте ще раз.'
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'viewScript' => 'file:./frontend.js',
-		'style' => 'file:./style-index.css'
-	),
 	'materials-card' => array(
 		'apiVersion' => 2,
 		'name' => 'parts-blocks/materials-card',
@@ -531,52 +227,29 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
-	'materials-card copy' => array(
+	'news-card' => array(
 		'apiVersion' => 2,
-		'name' => 'parts-blocks/materials-card',
-		'title' => 'Картка з файлом',
+		'name' => 'parts-blocks/news-card',
+		'title' => 'Картка новин',
 		'category' => 'parts-blocks',
 		'icon' => 'media-document',
-		'description' => 'Картка з назвою, зображенням та файлом.',
-		'attributes' => array(
-			'title' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'file' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'imageUrl' => array(
-				'type' => 'string',
-				'default' => ''
-			)
-		),
+		'description' => 'Картка, що бере дані з поточного запису Query Loop.',
 		'supports' => array(
 			'html' => false
 		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css'
-	),
-	'materials-search' => array(
-		'apiVersion' => 2,
-		'name' => 'parts-blocks/search-entries',
-		'title' => 'Пошук у блоках',
-		'category' => 'parts-blocks',
-		'icon' => 'search',
-		'description' => 'Динамічний пошук по полях інших блоків у редакторі',
-		'attributes' => array(
-			'targetBlocks' => array(
-				'type' => 'string',
-				'default' => '.qa-item'
-			)
+		'usesContext' => array(
+			'postId',
+			'postType'
 		),
-		'supports' => array(
-			'html' => false
+		'attributes' => array(
+			'fallbackImage' => array(
+				'type' => 'string',
+				'default' => ''
+			)
 		),
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
-		'viewScript' => 'file:./frontend.js'
+		'render' => 'file:./render.php'
 	),
 	'news-slider' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -614,26 +287,6 @@ return array(
 			'file:./style-index.css'
 		),
 		'viewScript' => 'file:./script.js',
-		'render' => 'file:./render.php'
-	),
-	'php-example-block' => array(
-		'apiVersion' => 2,
-		'name' => 'custom-blocks/php-example',
-		'title' => 'PHP Example Block',
-		'description' => 'An example block using PHP.',
-		'category' => 'custom-blocks',
-		'icon' => 'slides',
-		'supports' => array(
-			'html' => false
-		),
-		'attributes' => array(
-			'numberOfPosts' => array(
-				'type' => 'number',
-				'default' => 3
-			)
-		),
-		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
 	'qa-block' => array(
@@ -677,28 +330,24 @@ return array(
 		'viewScript' => 'file:./frontend.js',
 		'style' => 'file:./style-index.css'
 	),
-	'search-button-img' => array(
+	'search-entries' => array(
 		'apiVersion' => 2,
-		'name' => 'custom-blocks/search-button-img',
-		'title' => 'Search Button with Image',
-		'category' => 'custom-blocks',
+		'name' => 'parts-blocks/search-entries',
+		'title' => 'Пошук у блоках',
+		'category' => 'parts-blocks',
 		'icon' => 'search',
-		'description' => 'Кнопка з SVG або зображенням пошуку',
+		'description' => 'Динамічний пошук по полях інших блоків у редакторі',
 		'attributes' => array(
-			'url' => array(
+			'targetBlocks' => array(
 				'type' => 'string',
-				'default' => ''
-			),
-			'themeUrl' => array(
-				'type' => 'string',
-				'default' => ''
+				'default' => '.qa-item'
 			)
 		),
 		'supports' => array(
-			'inserter' => true
+			'html' => false
 		),
 		'editorScript' => 'file:./index.js',
-		'style' => 'file:./style.css',
-		'editorStyle' => 'file:./editor.scss'
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./frontend.js'
 	)
 );

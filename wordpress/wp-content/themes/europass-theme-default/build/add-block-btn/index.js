@@ -8,7 +8,7 @@
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"parts-blocks/add-block-btn","title":"Додати блок нижче","category":"parts-blocks","icon":"plus","description":"Кнопка для додавання блоку за іменем під собою","supports":{"html":false,"lock":true},"attributes":{"lock":{"type":"object","default":{"move":true,"remove":true}},"blockName":{"type":"string","default":"parts-blocks/materials-card"},"buttonLabel":{"type":"string","default":"➕ додати матеріал"}},"editorScript":"file:./index.js","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"parts-blocks/add-block-btn","title":"Додати блок нижче","category":"parts-blocks","icon":"plus","description":"Кнопка для додавання блоку або патерну під собою","supports":{"html":false,"lock":true},"attributes":{"lock":{"type":"object","default":{"move":true,"remove":true}},"addMode":{"type":"string","enum":["block","pattern"],"default":"block"},"blockName":{"type":"string","default":"parts-blocks/materials-card"},"patternKey":{"type":"string","default":""},"buttonLabel":{"type":"string","default":"➕ додати матеріал"},"targetSelector":{"type":"string","default":""}},"editorScript":"file:./index.js","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -27,10 +27,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/add-block-btn/block.json");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/add-block-btn/style.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/add-block-btn/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "./src/add-block-btn/style.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -38,41 +40,162 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+
+/** Рекурсивно розгортає reusable (core/block with ref) у звичайні блоки */
+
+function expandReusableBlocks(blocks, getReusableHTMLById) {
+  return blocks.flatMap(b => {
+    if (b?.name === 'core/block' && b?.attributes?.ref) {
+      const html = getReusableHTMLById(b.attributes.ref);
+      if (html) {
+        const inner = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.parse)(html);
+        return expandReusableBlocks(inner, getReusableHTMLById);
+      }
+      return [b];
+    }
+    if (b?.innerBlocks?.length) {
+      const expandedChildren = expandReusableBlocks(b.innerBlocks, getReusableHTMLById);
+      return [{
+        ...b,
+        innerBlocks: expandedChildren
+      }];
+    }
+    return [b];
+  });
+}
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
   edit: ({
     attributes,
     setAttributes,
     clientId
   }) => {
     const {
+      addMode,
       blockName,
-      buttonLabel
+      patternKey,
+      buttonLabel,
+      targetSelector
     } = attributes;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
     const {
       insertBlocks
     } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)('core/block-editor');
-    const {
-      getBlockIndex,
-      getBlockRootClientId
-    } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select('core/block-editor'), []);
-    const handleAdd = () => {
-      const newBlock = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)(blockName);
-      const rootClientId = getBlockRootClientId(clientId);
-      const index = getBlockIndex(clientId, rootClientId);
-      insertBlocks(newBlock, index + 1, rootClientId);
+    const be = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select('core/block-editor'), []);
+    const core = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => select('core'), []);
+    const rootClientId = be.getBlockRootClientId(clientId);
+    const currentIndex = be.getBlockIndex(clientId, rootClientId);
+
+    // 1) шукаємо в зареєстрованих патернах за slug (name)
+    const patternBySlug = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useMemo)(() => {
+      if (!patternKey || addMode !== 'pattern') return null;
+      const patterns = be.getBlockPatterns?.() || [];
+      return patterns.find(p => p.name === patternKey) || null;
+    }, [addMode, patternKey, be]);
+
+    // 2) якщо не знайдено і patternKey схожий на ID → тягнемо пост
+    const isNumericId = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useMemo)(() => /^\d+$/.test((patternKey || '').trim()), [patternKey]);
+    const patternPostById = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+      if (!isNumericId || addMode !== 'pattern') return null;
+      const coreSel = select('core');
+      const id = Number(patternKey);
+      // Спроба: спершу wp_pattern (нові кастомні патерни), інакше wp_block (synced)
+      return coreSel.getEntityRecord?.('postType', 'wp_pattern', id) || coreSel.getEntityRecord?.('postType', 'wp_block', id) || null;
+    }, [addMode, isNumericId, patternKey]);
+    const getReusableHTMLById = id => {
+      // reusable/synced традиційно зберігаються у wp_block
+      const rec = core.getEntityRecord?.('postType', 'wp_block', id) || core.getEntityRecord?.('postType', 'wp_pattern', id) || null;
+      return rec?.content?.raw || null;
     };
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-          title: "\u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u043A\u043D\u043E\u043F\u043A\u0438",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-            label: "\u041D\u0430\u0437\u0432\u0430 \u0431\u043B\u043E\u043A\u0443 \u0434\u043B\u044F \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F",
+    const resolveTarget = () => {
+      if (!targetSelector) return {
+        parentId: rootClientId,
+        index: currentIndex + 1
+      };
+      const el = document.querySelector(targetSelector);
+      if (!el) return {
+        parentId: rootClientId,
+        index: currentIndex + 1
+      };
+      const host = el.closest('.block-editor-block-list__block');
+      const targetId = host?.dataset?.block;
+      if (!targetId) return {
+        parentId: rootClientId,
+        index: currentIndex + 1
+      };
+      const order = be.getBlockOrder(targetId) || [];
+      return {
+        parentId: targetId,
+        index: order.length
+      }; // всередину, в кінець
+    };
+    const handleAdd = () => {
+      let blocksToInsert = [];
+      if (addMode === 'block') {
+        blocksToInsert = [(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.createBlock)(blockName)];
+      } else if (addMode === 'pattern') {
+        if (patternBySlug?.content) {
+          const parsed = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.parse)(patternBySlug.content);
+          blocksToInsert = expandReusableBlocks(parsed, getReusableHTMLById);
+        } else if (isNumericId && patternPostById?.content?.raw) {
+          const parsed = (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.parse)(patternPostById.content.raw);
+          blocksToInsert = expandReusableBlocks(parsed, getReusableHTMLById);
+        } else {
+          return; // не знайшли патерн ні за slug, ні за id
+        }
+      }
+      if (!blocksToInsert.length) return;
+      const {
+        parentId,
+        index
+      } = resolveTarget();
+      insertBlocks(blocksToInsert, index, parentId);
+    };
+    const showNotFoundNotice = addMode === 'pattern' && patternKey && !patternBySlug && (!isNumericId || isNumericId && !patternPostById);
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+          title: "\u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+            label: "\u0420\u0435\u0436\u0438\u043C \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F",
+            value: addMode,
+            options: [{
+              label: 'Блок за ім’ям',
+              value: 'block'
+            }, {
+              label: 'Патерн (slug або ID)',
+              value: 'pattern'
+            }],
+            onChange: val => setAttributes({
+              addMode: val
+            })
+          }), addMode === 'block' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+            label: "\u041D\u0430\u0437\u0432\u0430 \u0431\u043B\u043E\u043A\u0443 (namespace/block)",
             value: blockName,
             onChange: val => setAttributes({
               blockName: val
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+            }),
+            placeholder: "core/paragraph"
+          }), addMode === 'pattern' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+              label: "Pattern (slug \u0430\u0431\u043E ID)",
+              value: patternKey,
+              onChange: val => setAttributes({
+                patternKey: val
+              }),
+              placeholder: "theme/pattern-name \u0430\u0431\u043E 123"
+            }), showNotFoundNotice && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Notice, {
+              status: "warning",
+              isDismissible: false,
+              children: "\u041F\u0430\u0442\u0435\u0440\u043D \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u043D\u0456 \u0437\u0430 slug, \u043D\u0456 \u0437\u0430 ID."
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+            label: "CSS-\u0441\u0435\u043B\u0435\u043A\u0442\u043E\u0440 \u0442\u0430\u0440\u0433\u0435\u0442\u0430 (\u043E\u043F\u0446\u0456\u0439\u043D\u043E)",
+            value: targetSelector,
+            onChange: val => setAttributes({
+              targetSelector: val
+            }),
+            placeholder: ".my-section \u0430\u0431\u043E #target"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
             label: "\u0422\u0435\u043A\u0441\u0442 \u043A\u043D\u043E\u043F\u043A\u0438",
             value: buttonLabel,
             onChange: val => setAttributes({
@@ -80,10 +203,10 @@ __webpack_require__.r(__webpack_exports__);
             })
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         ...blockProps,
         className: "add-block-btn",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
           variant: "primary",
           onClick: handleAdd,
           children: buttonLabel
@@ -145,6 +268,16 @@ module.exports = window["wp"]["components"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["data"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
 
 /***/ }),
 

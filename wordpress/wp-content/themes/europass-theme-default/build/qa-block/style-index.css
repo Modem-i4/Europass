@@ -6,10 +6,10 @@
 /* один елемент Q&A */
 .qa-item {
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
+  border-radius: 32px;
   background: #f3f4f6;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2509803922);
   transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
@@ -17,14 +17,15 @@
 .qa-summary {
   list-style: none;
   display: flex;
-  height: 72px;
+  height: 70px;
   align-items: center;
   gap: 12px;
   padding: 16px 18px;
   font-weight: 600;
   font-size: 16px;
-  color: #1f2937;
-  background: #e5e7eb;
+  font-family: var(--wp--preset--font-family--noto-sans);
+  color: #575756;
+  background: #e5e5ea;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -78,7 +79,7 @@
 } /* саме тут відбувається обрізання */
 /* відкритий стан класом */
 .qa-item.is-open {
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2509803922);
 }
 
 .qa-item.is-open > .qa-summary {
@@ -93,7 +94,7 @@
 
 .qa-item.is-open .qa-content {
   grid-template-rows: 1fr; /* відкрито */
-  padding: 12px 18px 16px 50px;
+  padding: 22px 18px 27px 50px;
   opacity: 1;
 }
 

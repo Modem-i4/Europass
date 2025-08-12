@@ -1,15 +1,34 @@
 @import url("/wp-content/themes/europass-theme-default/css/fonts.css");
-@import url("/wp-content/themes/europass-theme-default/css/header.css");
+/* @import url("/wp-content/themes/europass-theme-default/css/header.css"); */
 /* @import url("/wp-content/themes/europass-theme-default/css/hero.css"); */
-@import url("/wp-content/themes/europass-theme-default/css/hero-2.css");
-@import url("/wp-content/themes/europass-theme-default/css/about-europass.css");
-@import url("/wp-content/themes/europass-theme-default/css/main__about-europass.css");
+/* @import url("/wp-content/themes/europass-theme-default/css/main__about-europass.css");
 @import url("/wp-content/themes/europass-theme-default/css/main__tools-europass.css");
 @import url("/wp-content/themes/europass-theme-default/css/profile-europas__hero-section.css");
-@import url("/wp-content/themes/europass-theme-default/css/profile-europas__about.css");
+@import url("/wp-content/themes/europass-theme-default/css/profile-europas__about.css"); */
+
+/* @import url("/wp-content/themes/europass-theme-default/css/footer.css"); */
+
+@import url("/wp-content/themes/europass-theme-default/css/about-europass.css");
 
 @import url('/wp-content/themes/europass-theme-default/css/search.css');
 @import url('/wp-content/themes/europass-theme-default/css/contact-form.css');
+@import url("/wp-content/themes/europass-theme-default/css/header-2.css");
+@import url("/wp-content/themes/europass-theme-default/css/hero-2.css");
+@import url("/wp-content/themes/europass-theme-default/css/news-card.css");
+@import url("/wp-content/themes/europass-theme-default/css/footer-2.css");
+@import url("/wp-content/themes/europass-theme-default/css/useful-links.css");
+@import url("/wp-content/themes/europass-theme-default/css/national-centers.css");
+/* @import url("/wp-content/themes/europass-theme-default/css/tools-icons-animation.css"); */
+
+.indent {
+    text-indent: 3em;
+}
+
+@media (max-width: 800px) {
+  .indent {
+      text-indent: 1.6em;
+  }
+}
 
 a.wp-block-tiptip-hyperlink-group-block {
     text-decoration: none;
@@ -22,4 +41,26 @@ a.wp-block-tiptip-hyperlink-group-block {
 
 .relative {
   position: relative;
+}
+
+.media-to-icon-img {
+  grid-template-columns: 20px auto !important;
+}
+.media-to-icon-img .wp-block-media-text__content {
+  padding: 0 18px;
+}
+.search-block__input {
+  background-image: url('/wp-content/uploads/2025/08/Icon.svg');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gray-layout {
+  position: relative;
+  background: #f4f4f8; /* твій колір фону */
+  clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 90%);
+  width: 100%;
+  height: 100%; /* або конкретне значення */
 }

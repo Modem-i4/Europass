@@ -9,7 +9,7 @@ function init_custom_blocks() {
     );
 }
 add_action( 'init', 'init_custom_blocks' );
-
+add_filter('excerpt_length', fn() => 20);
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'mytheme-style',
@@ -17,6 +17,17 @@ add_action( 'wp_enqueue_scripts', function () {
         [],
         filemtime( get_template_directory() . '/css/style.css' )
     );
+
+    foreach ( glob( get_template_directory() . '/js/*.js' ) as $file ) {
+        $handle = 'mytheme-' . basename( $file, '.js' );
+        wp_enqueue_script(
+            $handle,
+            get_template_directory_uri() . '/js/' . basename( $file ),
+            [],
+            filemtime( $file ),
+            true
+        );
+    }
 });
 
 add_action( 'after_setup_theme', function () {

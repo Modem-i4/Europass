@@ -5,7 +5,7 @@
   "title": "Додати блок нижче",
   "category": "parts-blocks",
   "icon": "plus",
-  "description": "Кнопка для додавання блоку за іменем під собою",
+  "description": "Кнопка для додавання блоку або патерну під собою",
   "supports": {
     "html": false,
     "lock": true
@@ -18,13 +18,29 @@
         "remove": true
       }
     },
+    "addMode": {
+      "type": "string",
+      "enum": [
+        "block",
+        "pattern"
+      ],
+      "default": "block"
+    },
     "blockName": {
       "type": "string",
       "default": "parts-blocks/materials-card"
     },
+    "patternKey": {
+      "type": "string",
+      "default": ""
+    },
     "buttonLabel": {
       "type": "string",
       "default": "➕ додати матеріал"
+    },
+    "targetSelector": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "file:./index.js",

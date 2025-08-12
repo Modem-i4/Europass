@@ -1,0 +1,13 @@
+.national-centers-search-wrapper {
+    width: 40%;
+}
+
+.centers-country-card img {
+    border-radius: 5px;
+}
+
+@media (max-width: 800px) {
+  .national-centers-search-wrapper {
+      width: 100%;
+  }
+}

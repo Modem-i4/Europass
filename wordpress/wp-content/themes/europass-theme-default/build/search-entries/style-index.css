@@ -1,0 +1,40 @@
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/search-entries/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+.search-block {
+  padding: 1rem;
+}
+.search-block__input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 50px !important;
+  border-radius: 8px;
+  border: 0;
+  background-color: #fff;
+  font-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+  background-size: 20px 20px;
+}
+.search-block__input:focus {
+  outline: none;
+}
+.search-block__empty-message {
+  margin-top: 0.75rem;
+  font-style: italic;
+  color: #666;
+  display: none;
+}
+
+.search-block-wrapper {
+  position: relative;
+  width: auto;
+}
+
+.search-input-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  transform: translateY(50%);
+}
+
+/*# sourceMappingURL=style-index.css.map*/

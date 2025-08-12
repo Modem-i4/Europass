@@ -1,0 +1,52 @@
+.tools-europas__tools__wrapper {
+	color: #575756;
+	font-size: 16px;
+	font-weight: 700;
+    padding: 0 20px;
+}
+.tools-europas__tools {
+	max-width: 823px;
+}
+
+.tools-europas__tools__wrapper * {
+	box-sizing: border-box;
+}
+.tools-europas__tools__header {
+	font-size: 40px;
+}
+.tools-europas__tool-wrapper {
+	background: #e5e5ea;
+	border-radius: 100px;
+	padding: 12px 30px !important;
+	box-shadow: 0px 4px 6px 0px #00000040;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.tools-europas__tool {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	border-radius: 100px;
+}
+.tools-europas__tools__paragraph {
+	margin: 0 !important;
+}
+.tools-europas__tool-wrapper:hover .tools-europas__tool {
+	background: linear-gradient(90deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
+	color: white;
+}
+.tools-europas__tool-wrapper:hover .tools-europas__tool__img {
+	background: none;
+}
+
+.tools-europas__tool-wrapper:hover {
+	background: #e5e5ea;
+}
+.tools-europas__tool__img {
+	margin: 0 32px 0 0 !important;
+	background: linear-gradient(90deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
+	padding: 17px !important;
+	border-radius: 100px;
+}

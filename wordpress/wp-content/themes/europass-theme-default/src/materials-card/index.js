@@ -31,48 +31,51 @@ registerBlockType(metadata.name, {
 		};
 
 		return (
-			<div {...useBlockProps({ className: 'file-card-editor' })}>
+			<div {...useBlockProps({ className: 'file-card file-card-editor' })}>
 				<MediaUploadCheck>
 					<MediaUpload
 						onSelect={onSelectImage}
 						allowedTypes={['image']}
 						render={({ open }) => (
-							<div className="thumbnail-wrapper" onClick={open}>
+							<>
 								{imageUrl ? (
-									<img src={imageUrl} className="thumbnail" alt="Image" />
+									<img src={imageUrl} className="thumbnail" alt="Image"  onClick={open}/>
 								) : (
-									<div className="placeholder">🖼️</div>
+									<div className='thumbnail-wrapper'>
+										<div className="thumbnail" onClick={open}>🖼️+</div>
+									</div>
 								)}
-							</div>
+							</>
 						)}
 					/>
 				</MediaUploadCheck>
 
-				<div className="fields">
-					<TextControl
-						label="Назва"
-						value={title}
-						onChange={(val) => setAttributes({ title: val })}
-					/>
-
-					<MediaUploadCheck>
-						<MediaUpload
-							onSelect={onSelectFile}
-							allowedTypes={['application/pdf', 'application/msword']}
-							render={({ open }) => (
-								<Button onClick={open} variant="secondary">
-									{file ? 'Змінити файл' : 'Обрати файл'}
-								</Button>
-							)}
-						/>
-					</MediaUploadCheck>
-				</div>
-				<Button
-					className="remove-button"
-					onClick={confirmDelete}
-					icon={trash}
-					label="Видалити"
+				<TextControl
+					placeholder="Назва"
+					value={title}
+					onChange={(val) => setAttributes({ title: val })}
 				/>
+
+				<MediaUploadCheck>
+					<MediaUpload
+						onSelect={onSelectFile}
+						allowedTypes={['application/pdf', 'application/msword']}
+						render={({ open }) => (
+							<Button onClick={open} variant="secondary" className='icon-button'>
+								🔗
+							</Button>
+						)}
+					/>
+				</MediaUploadCheck>
+				<Button
+					onClick={confirmDelete}
+					variant="secondary"
+					className="icon-button close-icon"
+					aria-label="Видалити файл"
+					title="Видалити файл"
+				>
+					❌
+				</Button>	
 			</div>
 		);
 	},
@@ -84,9 +87,7 @@ registerBlockType(metadata.name, {
 
 	return (
 		<a href={file} target="_blank" rel="noopener noreferrer" className="file-card">
-			{imageUrl && (
-				<img className="thumbnail" src={imageUrl} alt="" />
-			)}
+			<img className="thumbnail" src={imageUrl ? imageUrl : '/wp-content/uploads/2025/08/tools-resume.svg'} alt="" />
 			{title && <div className="file-title">{title}</div>}
 		</a>
 	);
