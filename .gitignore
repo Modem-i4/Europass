@@ -4,6 +4,7 @@
 !wordpress/
 !wordpress/wp-content/
 !wordpress/wp-content/**
+!*.sql
 
 wordpress/wp-content/uploads/
 wordpress/wp-content/cache/
@@ -13,8 +14,6 @@ wordpress/wp-content/ai1wm-backups/
 wordpress/wp-content/debug.log
 
 *.log
-*.sql
-*.sqlite
 *.zip
 *.tar.gz
 

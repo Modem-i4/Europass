@@ -57,3 +57,24 @@ add_action('admin_menu', function () {
 add_action('wp_enqueue_scripts', function () {
 	wp_deregister_script('comment-reply');
 }, 20);
+
+
+
+// Admin: сховати "Майстерня" та "Медіа"
+add_action('admin_menu', function () {
+    remove_menu_page('index.php');   // Майстерня / Dashboard
+    remove_menu_page('upload.php');  // Медіа / Media
+    // optionally: сховати "Оновлення" всередині Майстерні
+    remove_submenu_page('index.php', 'update-core.php');
+
+    // Сховати підменю "Категорії" та "Позначки" у "Записах"
+    remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
+    remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
+}, 999);
+
+// Один раз при активації теми
+add_action('after_switch_theme', function () {
+    update_option('show_on_front', 'posts'); // головна = записи
+    // Якщо раніше була статична — приберемо посилання
+    delete_option('page_on_front');
+});

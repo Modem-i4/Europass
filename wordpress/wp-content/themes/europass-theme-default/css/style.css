@@ -49,8 +49,15 @@ a.wp-block-tiptip-hyperlink-group-block {
 .media-to-icon-img .wp-block-media-text__content {
   padding: 0 18px;
 }
+.gray-spacer-hor {
+  background-color: #AEAEB2;
+  border-radius: 4px;
+}
 .search-block__input {
   background-image: url('/wp-content/uploads/2025/08/Icon.svg');
+}
+.wp-block-spacer {
+  max-height: 25px;
 }
 
 html {
