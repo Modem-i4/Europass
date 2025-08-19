@@ -3,7 +3,7 @@ function register_custom_block_categories( $categories ) {
     $new_categories = array(
         array(
             'slug'  => 'design-blocks',
-            'title' => __( 'Легкий пизайн', 'design-blocks' ),
+            'title' => __( 'Легкий дизайн', 'design-blocks' ),
             'icon'  => 'star-filled',
         ),
         array(

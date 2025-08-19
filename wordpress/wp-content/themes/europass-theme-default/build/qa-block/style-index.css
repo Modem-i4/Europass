@@ -2,11 +2,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/qa-block/style.scss ***!
   \************************************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
-/* корінь блоку */
 /* один елемент Q&A */
 .qa-item {
   border: 1px solid #e5e7eb;
-  border-radius: 32px;
+  border-radius: 46px;
   background: #f3f4f6;
   overflow: hidden;
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2509803922);
@@ -17,7 +16,7 @@
 .qa-summary {
   list-style: none;
   display: flex;
-  height: 70px;
+  min-height: 70px;
   align-items: center;
   gap: 12px;
   padding: 16px 18px;
@@ -38,6 +37,10 @@
 
 .qa-summary::-webkit-details-marker {
   display: none;
+}
+
+.qa-summary:hover {
+  background: #f5f5f8;
 }
 
 /* chevron-стрілка (ВНИЗ у закритому) — як ти хотів */

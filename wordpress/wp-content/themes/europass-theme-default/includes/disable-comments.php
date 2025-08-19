@@ -71,10 +71,3 @@ add_action('admin_menu', function () {
     remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
     remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
 }, 999);
-
-// Один раз при активації теми
-add_action('after_switch_theme', function () {
-    update_option('show_on_front', 'posts'); // головна = записи
-    // Якщо раніше була статична — приберемо посилання
-    delete_option('page_on_front');
-});

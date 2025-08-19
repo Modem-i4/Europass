@@ -9,7 +9,7 @@ function init_custom_blocks() {
     );
 }
 add_action( 'init', 'init_custom_blocks' );
-add_filter('excerpt_length', fn() => 20);
+
 add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style(
         'mytheme-style',

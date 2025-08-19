@@ -28,3 +28,22 @@ div.useful-link-card {
   flex:1 1 auto;          /* решта простору під текст */
   padding:12px;
 }
+
+.search-block-wrapper {
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.search-input-wrapper {
+  box-shadow: 0px 2px 4px 0px #00000040;
+}
+
+.search-block__input {
+  border-radius: 200px;
+}
+
+@media (max-width: 800px) {
+  .search-block-wrapper {
+      width: 100%;
+  }
+}

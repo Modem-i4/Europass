@@ -1,10 +1,7 @@
-/* корінь блоку */
-.wp-block-design-blocks-qa-block {}
-
 /* один елемент Q&A */
 .qa-item {
   border: 1px solid #e5e7eb;
-  border-radius: 32px;
+  border-radius: 46px;
   background: #f3f4f6;
   overflow: hidden;
   box-shadow: 0px 4px 6px 0px #00000040;
@@ -15,7 +12,7 @@
 .qa-summary {
   list-style: none;
   display: flex;
-  height: 70px;
+  min-height: 70px;
   align-items: center;
   gap: 12px;
   padding: 16px 18px;
@@ -32,6 +29,10 @@
   transition: background-color .25s ease, color .25s ease;
 }
 .qa-summary::-webkit-details-marker { display: none; }
+
+.qa-summary:hover {
+  background: #f5f5f8;
+}
 
 /* chevron-стрілка (ВНИЗ у закритому) — як ти хотів */
 .qa-arrow { width: 20px; height: 20px; flex: 0 0 20px; position: relative; }

@@ -5,7 +5,7 @@
 		"color": {
 			"gradients": [
 				{
-					"gradient": "linear-gradient(90deg,rgb(6,147,227) 0%,rgb(72,132,195) 51%,rgb(108,48,136) 100%)",
+					"gradient": "linear-gradient(88deg,rgb(6,147,227) 0%,rgb(72,132,195) 51%,rgb(108,48,136) 100%)",
 					"name": "Градієнт",
 					"slug": "gradient-1"
 				}

@@ -14,7 +14,7 @@ $fallback_image = ! empty( $attributes['fallbackImage'] ) ? esc_url( $attributes
 // 3) Дані поста
 $title      = get_the_title( $post_id );
 $permalink  = get_permalink( $post_id );
-$excerpt  = get_the_excerpt( $post_id );
+$excerpt  = wp_trim_words( get_the_excerpt($post_id), 20, '[…]' );
 $title_attr = the_title_attribute( [ 'echo' => false, 'post' => $post_id ] );
 
 // Категорія (перша) або “Публікація”

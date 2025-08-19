@@ -349,5 +349,37 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./frontend.js'
+	),
+	'show-more-container' => array(
+		'apiVersion' => 2,
+		'name' => 'parts-blocks/show-more-container',
+		'title' => 'Показати більше',
+		'category' => 'parts-blocks',
+		'icon' => 'plus',
+		'description' => 'Контейнер для великого вмісту',
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Переглянути всі'
+			),
+			'vhSpc' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'vhSmobile' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'mobileOnly' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'supports' => array(
+			'html' => false
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./frontend.js'
 	)
 );

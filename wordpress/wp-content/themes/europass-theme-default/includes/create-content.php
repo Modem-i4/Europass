@@ -1,16 +1,17 @@
 <?php
 add_action('after_switch_theme', function () {
+    return; // ! Зупинка автозаповнення !
     // ==== ВХІДНІ ДАНІ ========================================================
     $categories = array(
         array(
             'slug'       => 'europass',
-            'title'      => 'ПРО EUROPASS',
+            'title'      => 'Про Europass',
             'menu_order' => 2,
             'url'        => '#', // або home_url('/europass/') якщо потрібна реальна сторінка
         ),
         array(
             'slug'       => 'tools',
-            'title'      => 'ІНСТРУМЕНТИ EUROPASS',
+            'title'      => 'Інструменти Europass',
             'menu_order' => 3,
             'url'        => '#', // або home_url('/tools/')
         ),

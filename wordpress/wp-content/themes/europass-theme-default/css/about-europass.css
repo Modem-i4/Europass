@@ -36,6 +36,9 @@
 .tools-pill-card {
 	box-shadow: 0px 4px 6px 0px #00000040;
 }
+.tools-pill-card p {
+	margin: 0;
+}
 
 
 /* 💻 MD – планшети горизонтально */
@@ -98,6 +101,8 @@
 		z-index: -1;
 		clip-path: polygon(0% 91%, 0% 9%, 100% 6%, 100% 94%);
 	}
+
+	/*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  */
 }
 
 /* 📱 XS – великі телефони */
@@ -132,7 +137,7 @@
   position:absolute;
   inset:0;
   border-radius: 100px;
-  background: linear-gradient(90deg,#c65094 0%, #4884c3 50%, #6c3088 100%);
+  background: linear-gradient(88deg,#c65094 0%, #4884c3 50%, #6c3088 100%);
   z-index: 0;
   transition: opacity .25s ease;
 }
@@ -147,7 +152,7 @@
   width: 0;                     /* старт з нуля, розширюється лише вправо */
   opacity: 0;                   /* і з прозорості 0 */
   border-radius: 100px;
-  background: linear-gradient(90deg,#c65094 0%, #4884c3 50%, #6c3088 100%);
+  background: linear-gradient(88deg,#c65094 0%, #4884c3 50%, #6c3088 100%);
   z-index: 1;                   /* ← між фоном контейнера і зображенням */
   transition: width .45s ease, opacity .45s ease;
 }

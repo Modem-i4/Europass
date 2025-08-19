@@ -2,12 +2,12 @@
 /* @import url("/wp-content/themes/europass-theme-default/css/header.css"); */
 /* @import url("/wp-content/themes/europass-theme-default/css/hero.css"); */
 /* @import url("/wp-content/themes/europass-theme-default/css/main__about-europass.css");
-@import url("/wp-content/themes/europass-theme-default/css/main__tools-europass.css");
 @import url("/wp-content/themes/europass-theme-default/css/profile-europas__hero-section.css");
 @import url("/wp-content/themes/europass-theme-default/css/profile-europas__about.css"); */
 
 /* @import url("/wp-content/themes/europass-theme-default/css/footer.css"); */
 
+@import url("/wp-content/themes/europass-theme-default/css/main__tools-europass.css");
 @import url("/wp-content/themes/europass-theme-default/css/about-europass.css");
 
 @import url('/wp-content/themes/europass-theme-default/css/search.css');
@@ -19,6 +19,10 @@
 @import url("/wp-content/themes/europass-theme-default/css/useful-links.css");
 @import url("/wp-content/themes/europass-theme-default/css/national-centers.css");
 /* @import url("/wp-content/themes/europass-theme-default/css/tools-icons-animation.css"); */
+
+body {
+  overflow-x: hidden;
+}
 
 .indent {
     text-indent: 3em;

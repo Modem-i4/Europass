@@ -34,7 +34,7 @@
 	margin: 0 !important;
 }
 .tools-europas__tool-wrapper:hover .tools-europas__tool {
-	background: linear-gradient(90deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
+	background: linear-gradient(88deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
 	color: white;
 }
 .tools-europas__tool-wrapper:hover .tools-europas__tool__img {
@@ -46,7 +46,7 @@
 }
 .tools-europas__tool__img {
 	margin: 0 32px 0 0 !important;
-	background: linear-gradient(90deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
+	background: linear-gradient(88deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%);
 	padding: 17px !important;
 	border-radius: 100px;
 }
