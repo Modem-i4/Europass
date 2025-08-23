@@ -22,10 +22,13 @@ header .wp-block-navigation__responsive-container-close svg {
 	color: #575756;
 }
 
-header .current-menu-item,
+header .current-menu-item {
+	font-weight: bolder;
+	color: #232323 !important;
+}
 header .current-menu-ancestor > a > .wp-block-navigation-item__label {
-	color: #010101;
 	font-weight: 700;
+	color: #232323 !important;
 }
 
 @media (min-width: 961px) {
@@ -34,7 +37,7 @@ header .current-menu-ancestor > a > .wp-block-navigation-item__label {
 		position: absolute;
 		left: 0;
 		right: 0;
-		bottom: -2px;
+		bottom: 0;
 		height: 10px;
 		background: #fff56e;
 		transform: scaleX(0);
@@ -106,7 +109,7 @@ header .wp-element-button:hover {
 	background-color: red !important;
 }
 
-@media (max-width: 599.9px) {
+@media (max-width: 960px) {
 	header .wp-block-navigation__container > .wp-block-navigation-item > a::after {
 	  content: "";
 	  position: absolute;
@@ -199,4 +202,35 @@ header .wp-element-button:hover {
 		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="%23C65094"/><stop offset="50%" stop-color="%234884C3"/><stop offset="100%" stop-color="%236C3088"/></linearGradient></defs><polygon points="0,9 18,12 50,10 82,13 100,9 100,20 0,20" fill="url(%23g)"/></svg>') bottom center / 100% 160px no-repeat,
 		linear-gradient(180deg, #f3d7e8 0%, #dce6f4 50%, #e9dff1 100%) center / 100% 100% no-repeat;
 	}
+}
+
+
+
+
+/* ПЕРЕХІД ДО МОБІЛЬНОГО МЕНЮ */
+@media (max-width: 960px) {
+  .wp-block-navigation__responsive-container-open,
+  .wp-block-navigation__responsive-container-close {
+    display: block !important;
+  }
+
+  .wp-block-navigation__responsive-container {
+    display: none !important;
+  }
+
+  .wp-block-navigation__responsive-container.is-menu-open {
+    display: block !important;
+  }
+}
+
+/* показуємо звичайне меню */
+@media (min-width: 961px) {
+  .wp-block-navigation__responsive-container-open,
+  .wp-block-navigation__responsive-container-close {
+    display: none !important;
+  }
+
+  .wp-block-navigation__responsive-container {
+    display: block !important;
+  }
 }

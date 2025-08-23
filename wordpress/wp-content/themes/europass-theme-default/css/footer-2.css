@@ -246,6 +246,7 @@ footer.wp-block-template-part nav.wp-block-navigation li{
 	border: 0;
   }
 }
+/* MOBILE end */
 
 footer .open-on-click.wp-block-navigation-submenu > .wp-block-navigation__submenu-icon {
 	display: none;
@@ -257,7 +258,6 @@ footer .wp-block-navigation-item.current-menu-item
 .wp-block-navigation-item__label {
   color: #fff56e !important;
 }
-
 
 /* ===== ЖОВТА СМУГА ===== */
 

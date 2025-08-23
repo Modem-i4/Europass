@@ -3,7 +3,7 @@
   "name": "parts-blocks/show-more-container",
   "title": "Показати більше",
   "category": "parts-blocks",
-  "icon": "plus",
+  "icon": "welcome-add-page",
   "description": "Контейнер для великого вмісту",
   "attributes": {
     "label": { "type": "string", "default": "Переглянути всі" },

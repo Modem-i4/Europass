@@ -320,10 +320,6 @@ return array(
 				'type' => 'string',
 				'source' => 'html',
 				'selector' => '.qa-answer'
-			),
-			'open' => array(
-				'type' => 'boolean',
-				'default' => false
 			)
 		),
 		'editorScript' => 'file:./index.js',
@@ -355,7 +351,7 @@ return array(
 		'name' => 'parts-blocks/show-more-container',
 		'title' => 'Показати більше',
 		'category' => 'parts-blocks',
-		'icon' => 'plus',
+		'icon' => 'welcome-add-page',
 		'description' => 'Контейнер для великого вмісту',
 		'attributes' => array(
 			'label' => array(

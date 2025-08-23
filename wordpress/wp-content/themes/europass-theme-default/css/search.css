@@ -65,6 +65,7 @@
 }
 .search-results .type-post .badge::after{ content:'Новина'; }
 .search-results .type-page .badge::after{ content:'Сторінка'; }
+.search-results .type-attachment .badge::after{ content:'PDF'; }
 
 /* Адаптив */
 @media (max-width:782px){
@@ -86,3 +87,78 @@
 .search-results .page-control {
   display: none;
 }
+
+
+
+
+/* Сам блок пошуку */
+.search-page-search.search-block-wrapper {
+  width: 80%;
+  position: relative;
+}
+.search-page-search .wp-block-search {
+  padding: 1rem;
+}
+
+
+.search-page-search .search-input-wrapper {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+  transform: translateY(50%);
+}
+
+/* Поле вводу */
+.search-page-search .wp-block-search__input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 50px !important; /* місце під іконку */
+  border-radius: 40px;
+  border: 0;
+  background-color: #fff;
+  font-size: 16px;
+
+  /* Іконка у фоні */
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+  background-size: 20px 20px;
+}
+
+.search-page-search .wp-block-search__input:focus {
+  outline: none;
+}
+
+/* Кнопка пошуку */
+.search-page-search .wp-block-search__button {
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  background-color: #fff56e;
+  color: #575756;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+}
+a.btn-yellow-hover,
+.btn-yellow-hover a  {
+  transition: 0.3s ease-in-out;
+}
+.search-page-search .wp-block-search__button:hover,
+a.btn-yellow-hover:hover,
+.btn-yellow-hover:hover a {
+  box-shadow: 0 0 0 2px #575756;
+  z-index: 1;
+}
+
+.block-editor-rich-text__editable.wp-block-post-excerpt__more-link.rich-text {
+  display: none !important;
+}
+
+@media (min-width: 961px) {
+  .btn-search-mobile {
+    display: none !important;
+  }
+}
+@media (max-width: 960px) {
+  .btn-search-pc button {
+    display: none !important;
+  }
+}
+

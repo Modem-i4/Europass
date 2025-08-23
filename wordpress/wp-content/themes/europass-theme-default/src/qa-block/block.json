@@ -17,8 +17,7 @@
 	},
 	"attributes": {
 		"question": { "type": "string", "source": "html", "selector": ".qa-question" },
-		"answer":   { "type": "string", "source": "html", "selector": ".qa-answer" },
-		"open":     { "type": "boolean", "default": false }
+		"answer":   { "type": "string", "source": "html", "selector": ".qa-answer" }
 	},
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./frontend.js",

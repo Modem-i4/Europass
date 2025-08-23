@@ -35,6 +35,7 @@ add_action( 'after_setup_theme', function () {
     add_editor_style( 'css/style.css' );
 });
 
+require_once get_template_directory() . '/includes/pdf-search-index.php';
 require_once get_template_directory() . '/includes/permalinks.php';
 require_once get_template_directory() . '/includes/create-content.php';
 require_once get_template_directory() . '/includes/disable-comments.php';

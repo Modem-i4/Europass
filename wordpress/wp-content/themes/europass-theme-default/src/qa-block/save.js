@@ -1,14 +1,13 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
-  const { question, answer, open } = attributes;
+  const { question, answer } = attributes;
 
   return (
     <div
       {...useBlockProps.save({
-        className: `qa-item ${open ? 'is-open' : ''}`,
-        'aria-expanded': open ? 'true' : 'false',
-        'data-open': open ? 'true' : 'false'
+        className: 'qa-item',
+        'aria-expanded': 'false'
       })}
     >
       <button type="button" className="qa-summary">
@@ -22,5 +21,5 @@ export default function save({ attributes }) {
         </div>
       </div>
     </div>
-  ); 
+  );
 }

@@ -8,7 +8,7 @@
   \********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"parts-blocks/show-more-container","title":"Показати більше","category":"parts-blocks","icon":"plus","description":"Контейнер для великого вмісту","attributes":{"label":{"type":"string","default":"Переглянути всі"},"vhSpc":{"type":"number","default":1},"vhSmobile":{"type":"number","default":1},"mobileOnly":{"type":"boolean","default":false}},"supports":{"html":false},"editorScript":"file:./index.js","style":"file:./style-index.css","viewScript":"file:./frontend.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"name":"parts-blocks/show-more-container","title":"Показати більше","category":"parts-blocks","icon":"welcome-add-page","description":"Контейнер для великого вмісту","attributes":{"label":{"type":"string","default":"Переглянути всі"},"vhSpc":{"type":"number","default":1},"vhSmobile":{"type":"number","default":1},"mobileOnly":{"type":"boolean","default":false}},"supports":{"html":false},"editorScript":"file:./index.js","style":"file:./style-index.css","viewScript":"file:./frontend.js"}');
 
 /***/ }),
 
@@ -42,16 +42,21 @@ __webpack_require__.r(__webpack_exports__);
   }) => {
     const {
       label,
-      mobileOnly
+      mobileOnly,
+      vhSpc,
+      vhSmobile
     } = attributes;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
       className: 'va-show-more',
       'data-label': label,
-      'data-mobile-only': mobileOnly ? '1' : '0'
+      'data-mobile-only': mobileOnly ? '1' : '0',
+      'data-vh-spc': vhSpc !== null && vhSpc !== void 0 ? vhSpc : 1,
+      'data-vh-smobile': vhSmobile !== null && vhSmobile !== void 0 ? vhSmobile : 1
     });
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "va-show-more__content",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "va-show-more__fade"
@@ -72,6 +77,24 @@ __webpack_require__.r(__webpack_exports__);
             onChange: val => setAttributes({
               label: val
             })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+            label: "\u0412\u0438\u0441\u043E\u0442\u0430 \u043D\u0430 \u041F\u041A (\u0435\u043A\u0440\u0430\u043D\u0456\u0432)",
+            value: vhSpc,
+            onChange: val => setAttributes({
+              vhSpc: val
+            }),
+            min: 0,
+            max: 6,
+            step: 0.1
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+            label: "\u0412\u0438\u0441\u043E\u0442\u0430 \u043D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0456 (\u0435\u043A\u0440\u0430\u043D\u0456\u0432)",
+            value: vhSmobile,
+            onChange: val => setAttributes({
+              vhSmobile: val
+            }),
+            min: 0,
+            max: 6,
+            step: 0.1
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
             label: "\u041B\u0438\u0448\u0435 \u0434\u043B\u044F \u043C\u043E\u0431\u0456\u043B\u044C\u043D\u0438\u0445 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457\u0432",
             checked: !!mobileOnly,
@@ -88,13 +111,17 @@ __webpack_require__.r(__webpack_exports__);
   }) => {
     const {
       label,
-      mobileOnly
+      mobileOnly,
+      vhSpc,
+      vhSmobile
     } = attributes;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
         className: 'va-show-more',
         'data-label': label,
-        'data-mobile-only': mobileOnly ? '1' : '0'
+        'data-mobile-only': mobileOnly ? '1' : '0',
+        'data-vh-spc': vhSpc !== null && vhSpc !== void 0 ? vhSpc : 1,
+        'data-vh-smobile': vhSmobile !== null && vhSmobile !== void 0 ? vhSmobile : 1
       }),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "va-show-more__content",
