@@ -161,6 +161,9 @@ header .wp-element-button:hover {
 		transition: opacity 0.3s ease;
 	}
 
+	.wp-block-navigation__responsive-dialog{
+		margin-top: 0 !important;
+	}
 	header .wp-block-navigation__responsive-container .wp-block-navigation__responsive-dialog {
 		position: fixed;
 		top: 0;
