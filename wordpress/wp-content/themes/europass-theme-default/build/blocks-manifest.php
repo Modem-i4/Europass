@@ -49,6 +49,35 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
+	'estimated-reading-time' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'parts-blocks/reading-time',
+		'title' => 'Час читання запису',
+		'category' => 'parts-blocks',
+		'icon' => 'clock',
+		'description' => 'Орієнтовний час читання поточного запису.',
+		'supports' => array(
+			'html' => false
+		),
+		'attributes' => array(
+			'wpm' => array(
+				'type' => 'number',
+				'default' => 200
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => 'хв читання'
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'form-checkbox' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -245,6 +274,10 @@ return array(
 			'fallbackImage' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'excerptLength' => array(
+				'type' => 'number',
+				'default' => 200
 			)
 		),
 		'editorScript' => 'file:./index.js',

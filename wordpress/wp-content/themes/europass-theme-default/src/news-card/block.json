@@ -8,7 +8,8 @@
   "supports": { "html": false },
   "usesContext": ["postId", "postType"],
   "attributes": {
-    "fallbackImage": { "type": "string", "default": "" }
+    "fallbackImage": { "type": "string", "default": "" },
+    "excerptLength": { "type": "number", "default": 200 }
   },
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css",

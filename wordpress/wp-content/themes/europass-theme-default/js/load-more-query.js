@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.news-serach-block');
+  if (form) {
+    form.action = window.location.href.split('?')[0]; // чистий URL без ?s=...
+  }
   // для кожного контейнера з кнопкою "Завантажити ще"
-  document.querySelectorAll('.js-load-more').forEach((btn) => {
+  document.querySelectorAll('.js-load-more a').forEach((btn) => {
     const query = btn.closest('.wp-block-query');
     if (!query) return;
 

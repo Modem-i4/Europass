@@ -1,10 +1,10 @@
 import { InspectorControls, MediaUpload, MediaUploadCheck, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, Button } from '@wordpress/components';
+import { PanelBody, Button, RangeControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import metadata from './block.json';
 
 export default function Edit( { attributes, setAttributes, context } ) {
-  const { fallbackImage = '' } = attributes;
+  const { fallbackImage = '', excerptLength = 200 } = attributes;
   const { postId, postType } = context || {};
   const blockProps = useBlockProps({ className: 'news-latest-card' });
 
@@ -31,8 +31,17 @@ export default function Edit( { attributes, setAttributes, context } ) {
   const title = post?.title?.rendered ? post.title.rendered.replace(/<[^>]*>/g, '') : '';
   const link  = post?.link || '#';
   const img   = media?.source_url || (fallbackImage || '');
-  const catName = cats?.[0]?.name || 'Публікація';
   const dateHuman = timeAgo(post?.date_gmt || post?.date);
+
+  const stripHtml = (html = '') => html.replace(/<[^>]*>/g, '').trim();
+  const trimWords = (text, words = 200) => {
+    const parts = text.split(/\s+/);
+    if (parts.length <= words) return text;
+    return parts.slice(0, words).join(' ') + ' […]';
+  };
+
+  const rawExcerpt = post?.excerpt?.rendered ? stripHtml(post.excerpt.rendered) : '';
+  const editorExcerpt = trimWords(rawExcerpt, excerptLength);
 
   return (
     <>
@@ -54,6 +63,14 @@ export default function Edit( { attributes, setAttributes, context } ) {
               Прибрати fallback
             </Button>
           ) }
+          <RangeControl
+            label="Довжина уривка (слова)"
+            value={ excerptLength }
+            onChange={ (value) => setAttributes({ excerptLength: value }) }
+            min={ 10 }
+            max={ 600 }
+            step={ 10 }
+          />
         </PanelBody>
       </InspectorControls>
 
@@ -72,8 +89,8 @@ export default function Edit( { attributes, setAttributes, context } ) {
 
             <div className="card-content">
               <h3 className="card-title">{ title || 'Без назви' }</h3>
+              <div className="card-excerpt">{ editorExcerpt }</div>
               <div className="card-meta">
-                <div className="card-type">{ catName }</div>
                 <div className="card-date">{ dateHuman }</div>
               </div>
             </div>

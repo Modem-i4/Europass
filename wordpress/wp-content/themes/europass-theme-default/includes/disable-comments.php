@@ -21,6 +21,9 @@ add_filter('get_comments_number', function ($count) { return 0; }, 20, 2);
 // 3) Прибираємо пункт "Коментарі" в меню адмінки
 add_action('admin_menu', function () {
 	remove_menu_page('edit-comments.php');
+    remove_submenu_page( 'tools.php', 'tools.php' );
+    remove_submenu_page( 'tools.php', 'import.php' ); 
+    remove_submenu_page( 'tools.php', 'site-health.php' );
 }, 999);
 
 // 4) Ховаємо іконку коментарів у верхньому адмін-барі
@@ -71,3 +74,19 @@ add_action('admin_menu', function () {
     remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
     remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
 }, 999);
+
+
+// Видаляємо "Переглянути" з дій у списку користувачів
+add_filter( 'user_row_actions', function( $actions, $user ) {
+    if ( isset( $actions['view'] ) ) {
+        unset( $actions['view'] );
+    }
+    return $actions;
+}, 10, 2 );
+
+// Ховаємо кнопку "Згорнути меню" в адмінці
+add_action('admin_head', function() {
+    echo '<style>
+        #collapse-menu { display: none !important; }
+    </style>';
+});

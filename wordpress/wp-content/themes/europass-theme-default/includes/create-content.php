@@ -1,6 +1,10 @@
 <?php
 add_action('after_switch_theme', function () {
+    
+    
     return; // ! Зупинка автозаповнення !
+
+
     // ==== ВХІДНІ ДАНІ ========================================================
     $categories = array(
         array(

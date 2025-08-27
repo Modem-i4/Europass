@@ -10,19 +10,13 @@ if ( ! $post_id ) return;
 
 // 2) Атрибути
 $fallback_image = ! empty( $attributes['fallbackImage'] ) ? esc_url( $attributes['fallbackImage'] ) : '';
+$excerpt_len    = isset( $attributes['excerptLength'] ) ? max( 0, (int) $attributes['excerptLength'] ) : 200;
 
 // 3) Дані поста
 $title      = get_the_title( $post_id );
 $permalink  = get_permalink( $post_id );
-$excerpt  = wp_trim_words( get_the_excerpt($post_id), 20, '[…]' );
+$excerpt    = wp_trim_words( get_the_excerpt( $post_id ), $excerpt_len, ' […]' );
 $title_attr = the_title_attribute( [ 'echo' => false, 'post' => $post_id ] );
-
-// Категорія (перша) або “Публікація”
-$cat_name = 'Публікація';
-$cats = get_the_category( $post_id );
-if ( ! is_wp_error( $cats ) && ! empty( $cats ) ) {
-	$cat_name = $cats[0]->name;
-}
 
 // "N часу тому" (локальний час WP)
 $date_diff = human_time_diff(
@@ -49,7 +43,6 @@ $date_diff = human_time_diff(
 			<h3 class="card-title"><?php echo esc_html( $title ); ?></h3>
             <div class="card-excerp"><?php echo esc_html( $excerpt ); ?></div>
 			<div class="card-meta">
-				<div class="card-type"><?php echo esc_html( $cat_name ); ?></div>
 				<div class="card-date"><?php echo esc_html( $date_diff ); ?></div>
 			</div>
 		</div>
