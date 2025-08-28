@@ -68,6 +68,9 @@
 	.hero__img {
 		margin-top: 0 !important;
 	}
+	.hero-left-col {
+		padding-bottom: 2em !important;
+	}
 	.hero__wrpapper {
 		clip-path: polygon(
 			0% 0%,
@@ -75,6 +78,13 @@
 			100% 90%,  
 			0% 100% 
 		);
+		padding-top: 0 !important;
+	}
+	.title-about-europass {
+		margin-top: 1em !important;
+	}
+	.home-about-cols {
+		margin-top: -0.5em !important;
 	}
 	.bg-polygon.bg-polygon-right::after,
 	.bg-polygon.bg-polygon-left::after {

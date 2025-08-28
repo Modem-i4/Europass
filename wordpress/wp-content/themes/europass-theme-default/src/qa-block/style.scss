@@ -72,8 +72,10 @@
   opacity: 1;
 }
 
-/* hover-ефект */
-.qa-summary:hover .qa-arrow::before { border-color: #111827; }
+@media (min-width: 780px) {
+  /* hover-ефект */
+  .qa-summary:hover .qa-arrow::before { border-color: #111827; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .qa-item, .qa-summary, .qa-arrow::before, .qa-content { transition: none !important; }

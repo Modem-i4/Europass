@@ -14,8 +14,10 @@
 .card-excerp {
 	min-height: 110px;
 }
-.card-title {
-	min-height: 55px;
+@media (min-width: 768px) {
+  .card-title {
+    min-height: 55px;
+  }
 }
 .swiper-container {
 	& .news-latest-card .card-wrapper {
@@ -27,9 +29,11 @@
 	& .card-excerp {
 		display: none;
 	}
-	& .card-title {
-		min-height: 83px;
-	}
+  @media (min-width: 768px) {
+    & .card-title {
+      min-height: 83px;
+    }
+  }
 }
 .news-latest-card .card-wrapper:hover {
   transform: translateY(-2px);

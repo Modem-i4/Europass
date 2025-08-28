@@ -72,6 +72,14 @@ a.wp-block-tiptip-hyperlink-group-block {
 .wp-block-spacer {
 	max-height: 25px;
 }
+.wp-duotone-grayscale.wp-block-image img{
+  transition: .3s ease;
+  filter: grayscale(1) !important;
+}
+
+.wp-duotone-grayscale.wp-block-image:hover img{
+  filter: grayscale(0) !important; 
+}
 
 html {
 	scroll-behavior: smooth;
