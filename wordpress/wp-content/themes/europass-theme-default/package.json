@@ -23,6 +23,7 @@
 	},
 	"dependencies": {
 		"@wordpress/icons": "^10.27.0",
-		"@wordpress/server-side-render": "^6.4.0"
+		"@wordpress/server-side-render": "^6.4.0",
+		"swiper": "^11.2.10"
 	}
 }

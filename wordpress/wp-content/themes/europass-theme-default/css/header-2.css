@@ -24,7 +24,7 @@ header .wp-block-navigation__responsive-container-close svg {
 
 header .current-menu-item {
 	font-weight: bolder;
-	color: #232323 !important;
+	color: #575756 !important;
 }
 header .current-menu-ancestor > a > .wp-block-navigation-item__label {
 	font-weight: 700;
@@ -223,6 +223,10 @@ header .wp-element-button:hover {
 
   .wp-block-navigation__responsive-container.is-menu-open {
     display: block !important;
+  }
+
+  .wp-block-navigation:not(.has-text-color) .wp-block-navigation__responsive-container.is-menu-open {
+	color: #232323;
   }
 }
 

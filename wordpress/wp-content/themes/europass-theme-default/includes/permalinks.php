@@ -44,6 +44,45 @@ add_filter('pre_get_posts', function($q){
     $q->set('post_status', ['publish']);
     $q->set('sentence', true); // щоб працювали 1-символьні запити
 });
+add_filter('render_block', function ($block_content, $block) {
+    if (empty($block['blockName']) || $block['blockName'] !== 'core/navigation-link') {
+        return $block_content;
+    }
+
+    // Працюємо на будь-якій сторінці пошуку
+    if ( ! is_search() ) {
+        return $block_content;
+    }
+
+    $link_url = $block['attrs']['url'] ?? '';
+    if (!$link_url) return $block_content;
+
+    // нормалізовані варіанти адрес
+    $link_url   = untrailingslashit($link_url);
+    $pretty_url = untrailingslashit( home_url( user_trailingslashit('search') ) ); // /search/
+    $query_url  = untrailingslashit( add_query_arg('s', '', home_url('/')) );      // /?s=
+
+    // якщо це посилання на "пошукову" сторінку — підсвічуємо <li>
+    if ($link_url === $pretty_url || $link_url === $query_url) {
+        if (preg_match('/^<li\b[^>]*class="/', $block_content)) {
+            $block_content = preg_replace(
+                '/^<li\b([^>]*)class="([^"]*)"/',
+                '<li$1class="$2 current-menu-item current_page_item"',
+                $block_content
+            );
+        } else {
+            $block_content = preg_replace(
+                '/^<li\b/',
+                '<li class="current-menu-item current_page_item"',
+                $block_content
+            );
+        }
+    }
+
+    return $block_content;
+}, 10, 2);
+
+
 
 // 6) Добираємо PDF-вкладення при порожньому пошуку (показати ВСІ PDF на 1-й сторінці)
 add_filter('the_posts', function($posts, $q){
@@ -82,6 +121,20 @@ add_filter('the_posts', function($posts, $q){
 
     return $posts;
 }, 10, 2);
+
+
+
+add_filter('body_class', function($classes){
+    if ( is_search() ) {
+        if ( trim( (string) get_search_query() ) !== '' ) {
+            $classes[] = 'has-search-query';
+        } else {
+            $classes[] = 'has-empty-search';
+        }
+    }
+    return $classes;
+});
+
 
 // 7) Флаш рерайтів при активації теми
 add_action('after_switch_theme', function(){ flush_rewrite_rules(); });

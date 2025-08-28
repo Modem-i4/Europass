@@ -38,4 +38,4 @@ add_action( 'after_setup_theme', function () {
 require_once get_template_directory() . '/includes/pdf-search-index.php';
 require_once get_template_directory() . '/includes/permalinks.php';
 require_once get_template_directory() . '/includes/create-content.php';
-require_once get_template_directory() . '/includes/disable-comments.php';
+require_once get_template_directory() . '/includes/adjust-menus.php';

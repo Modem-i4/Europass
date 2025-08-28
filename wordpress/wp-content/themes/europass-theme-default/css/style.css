@@ -27,6 +27,15 @@ body {
 .indent {
 	text-indent: 3em;
 }
+.no-indent {
+	text-indent: 0;
+}
+.text-decoration-none a {
+	text-decoration: none;
+}
+.p-start {
+	padding-left: 1.5em;
+}
 
 @media (max-width: 800px) {
 	.indent {
@@ -57,8 +66,8 @@ a.wp-block-tiptip-hyperlink-group-block {
 	background-color: #aeaeb2;
 	border-radius: 4px;
 }
-.search-block__input {
-	background-image: url("/wp-content/uploads/2025/08/Icon.svg");
+.search-block__input, .wp-block-search__input {
+	background-image: url("/wp-content/uploads/2025/08/search-dark.svg");
 }
 .wp-block-spacer {
 	max-height: 25px;

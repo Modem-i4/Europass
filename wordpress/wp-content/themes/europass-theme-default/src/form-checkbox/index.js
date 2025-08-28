@@ -48,34 +48,34 @@ registerBlockType('parts-blocks/consent-checkbox', {
 						disabled
 					/>
 					<label className="cc-label">
-            <div>
-              <RichText
-                tagName="span"
-                className="cc-text cc-text--before"
-                value={labelBefore}
-                onChange={(v) => setAttributes({ labelBefore: v })}
-                placeholder="Текст до посилання…"
-                allowedFormats={[]} // простий текст
-              />
-              <a className="cc-link" href={linkUrl} target="_blank" rel="noopener">
-                <RichText
-                  tagName="span"
-                  className="cc-link__text"
-                  value={linkText}
-                  onChange={(v) => setAttributes({ linkText: v })}
-                  placeholder="Текст посилання…"
-                  allowedFormats={[]} // редагуємо тільки текст
-                />
-              </a>
-              <RichText
-                tagName="span"
-                className="cc-text cc-text--after"
-                value={labelAfter}
-                onChange={(v) => setAttributes({ labelAfter: v })}
-                placeholder="Текст після посилання…"
-                allowedFormats={[]}
-              />
-            </div>
+						<div>
+							<RichText
+								tagName="span"
+								className="cc-text cc-text--before"
+								value={labelBefore}
+								onChange={(v) => setAttributes({ labelBefore: v })}
+								placeholder="Текст до посилання…"
+								allowedFormats={[]} // простий текст
+							/>
+							<a className="cc-link" href={linkUrl} target="_blank" rel="noopener">
+								<RichText
+								tagName="span"
+								className="cc-link__text"
+								value={linkText}
+								onChange={(v) => setAttributes({ linkText: v })}
+								placeholder="Текст посилання…"
+								allowedFormats={[]} // редагуємо тільки текст
+								/>
+							</a>
+							<RichText
+								tagName="span"
+								className="cc-text cc-text--after"
+								value={labelAfter}
+								onChange={(v) => setAttributes({ labelAfter: v })}
+								placeholder="Текст після посилання…"
+								allowedFormats={[]}
+							/>
+						</div>
 					</label>
 				</div>
 			</>
@@ -97,10 +97,10 @@ registerBlockType('parts-blocks/consent-checkbox', {
           /> 
           <div>
             <span className="cc-text cc-text--before">{labelBefore} </span>
-            <a className="cc-link" href={linkUrl} target="_blank" rel="noopener">
+            {/* <a className="cc-link" href={linkUrl} target="_blank" rel="noopener">
               <span className="cc-link__text">{linkText}</span>
             </a>
-            <span className="cc-text cc-text--after">{labelAfter}</span>
+            <span className="cc-text cc-text--after">{labelAfter}</span> */}
           </div>
 				</label>
 			</div>

@@ -82,10 +82,10 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'parts-blocks/consent-checkbox',
-		'title' => 'Consent Checkbox',
+		'title' => 'Галочка згоди',
 		'category' => 'parts-blocks',
 		'icon' => 'yes-alt',
-		'description' => 'Чекбокс з лейблом і кастомним текстом посилання.',
+		'description' => 'Згода на використання персональних даних.',
 		'supports' => array(
 			'html' => false,
 			'anchor' => false,
@@ -107,15 +107,15 @@ return array(
 		'attributes' => array(
 			'labelBefore' => array(
 				'type' => 'string',
-				'default' => 'Я даю згоду на обробку моїх персональних даних. (Будь ласка, ознайомтеся з нашою'
+				'default' => 'Я даю згоду на обробку моїх персональних даних для надання відповіді.'
 			),
 			'linkText' => array(
 				'type' => 'string',
-				'default' => 'політикою обробки даних'
+				'default' => ''
 			),
 			'labelAfter' => array(
 				'type' => 'string',
-				'default' => ', перш ніж надати згоду.)'
+				'default' => ''
 			),
 			'linkUrl' => array(
 				'type' => 'string',

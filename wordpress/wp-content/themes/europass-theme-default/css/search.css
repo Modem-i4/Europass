@@ -79,7 +79,7 @@
   content:"";
   position:absolute;
   inset:0;
-  background:url("/wp-content/uploads/2025/08/tools-profile.svg") center/cover no-repeat;
+  background:url("/wp-content/uploads/2025/08/tools-profile.svg") center/contain no-repeat;
   border-radius:16px;
   pointer-events:none;
 }
@@ -93,7 +93,7 @@
 
 /* Сам блок пошуку */
 .search-page-search.search-block-wrapper {
-  width: 90%;
+  width: 60rem;
   position: relative;
 }
 .search-page-search .wp-block-search {
@@ -151,6 +151,18 @@ a.btn-yellow-hover:hover,
   display: none !important;
 }
 
+p.wp-block-post-excerpt__excerpt {
+  min-height: 5em;
+  text-align: justify;
+}
+
+.search-title { display:none !important; }
+
+body.has-search-query .search-title--with { display:block !important; }
+
+body.has-empty-search .search-title--empty { display:block !important; }
+
+
 @media (min-width: 961px) {
   .btn-search-mobile {
     display: none !important;
@@ -159,6 +171,9 @@ a.btn-yellow-hover:hover,
 @media (max-width: 960px) {
   .btn-search-pc button {
     display: none !important;
+  }
+  .search-page-search.search-block-wrapper {
+    width: 100%;
   }
 }
 

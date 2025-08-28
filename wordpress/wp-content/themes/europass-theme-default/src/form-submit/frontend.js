@@ -4,7 +4,6 @@
     const fd = new FormData();
     fields.forEach((el) => {
       if (el.disabled) return;
-
       if (el.type === 'checkbox' || el.type === 'radio') {
         if (el.checked) fd.append(el.name, el.value || 'on');
       } else {
@@ -14,40 +13,48 @@
     return fd;
   }
 
-  // ---- NEW: валідація заповненості полів ----
+  function isEmail(value) {
+    if (!value) return false;
+    const email = String(value).trim();
+    const m = email.match(/^([^@]+)@([^@]+)$/);
+    if (!m) return false;
+    const localOk = /^[A-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/i.test(m[1]);
+    if (!localOk) return false;
+    const domainOk = /^[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(m[2]);
+    if (!domainOk) return false;
+    return true;
+  }
+
   function isScopeComplete(scopeEl) {
     const fields = Array.from(scopeEl.querySelectorAll('[data-form-input="1"][name]'))
       .filter((el) => !el.disabled);
 
     if (!fields.length) return false;
-
     const hasRequired = fields.some((el) => el.required === true);
+    const considered = (el) => (hasRequired ? el.required === true : true);
 
-    // чи потрібно враховувати поле в перевірці
-    const considered = (el) => hasRequired ? el.required === true : true;
-
-    // зібрати групи radio/checkbox за name
-    const groups = new Map(); // name -> { required:boolean, anyChecked:boolean, hasInputs:boolean }
+    const groups = new Map();
     for (const el of fields) {
       if ((el.type === 'checkbox' || el.type === 'radio') && considered(el)) {
         const g = groups.get(el.name) || { required: false, anyChecked: false, hasInputs: false };
-        g.required = g.required || true;          // якщо група у «considered»
+        g.required = true;
         g.anyChecked = g.anyChecked || el.checked;
         g.hasInputs = true;
         groups.set(el.name, g);
       }
     }
 
-    // перевірка не-булевих інпутів
     for (const el of fields) {
       if (!considered(el)) continue;
-
-      if (el.type === 'checkbox' || el.type === 'radio') {
-        // групи перевіримо нижче
-        continue;
-      }
+      if (el.type === 'checkbox' || el.type === 'radio') continue;
 
       const tag = el.tagName.toLowerCase();
+      const wantsEmailCheck = el.type === 'email' || el.getAttribute('data-validate-email') === '1';
+      if (wantsEmailCheck) {
+        const val = (el.value ?? '').toString().trim();
+        if (val === '' || !isEmail(val)) return false;
+        continue;
+      }
 
       if (el.type === 'file') {
         if (!(el.files && el.files.length > 0)) return false;
@@ -59,11 +66,9 @@
         continue;
       }
 
-      // текстові/числові/мейл/тощо
       if ((el.value ?? '').toString().trim() === '') return false;
     }
 
-    // перевірка груп чекбоксів/радіо
     for (const [, g] of groups) {
       if (g.required && g.hasInputs && !g.anyChecked) return false;
     }
@@ -77,6 +82,7 @@
   function updateButtonActiveState(btn, scopeEl) {
     const complete = isScopeComplete(scopeEl);
     btn.classList.toggle('active', complete);
+    btn.disabled = !complete;
   }
 
   async function sendForm({ action, method, scopeEl, button, successMessage, errorMessage }) {
@@ -86,9 +92,7 @@
 
     try {
       const fd = serializeScope(scopeEl);
-      const fetchOpts = {
-        method: method || 'POST'
-      };
+      const fetchOpts = { method: method || 'POST' };
 
       if ((method || 'POST').toUpperCase() === 'GET') {
         const params = new URLSearchParams();
@@ -103,11 +107,23 @@
         if (!res.ok) throw new Error('Network error');
       }
 
-      // Успіх
       button.classList.remove('is-loading');
       button.classList.add('is-success');
       if (successMessage) alert(successMessage);
       button.textContent = originalText;
+
+      // очищення форми після успіху
+      scopeEl.querySelectorAll('[data-form-input="1"][name]').forEach((el) => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          el.checked = false;
+        } else if (el.type === 'file') {
+          el.value = '';
+        } else {
+          el.value = '';
+        }
+      });
+      updateButtonActiveState(button, scopeEl);
+
     } catch (e) {
       button.classList.remove('is-loading');
       button.classList.add('is-error');
@@ -115,9 +131,9 @@
       console.error('[form-components] submit failed:', e);
       button.textContent = originalText;
     } finally {
-      button.disabled = false;
       setTimeout(() => {
         button.classList.remove('is-success', 'is-error');
+        updateButtonActiveState(button, scopeEl);
       }, 1200);
     }
   }
@@ -125,12 +141,8 @@
   function bindValidation(btn, scopeEl) {
     if (!scopeEl || btn.__fcValBound) return;
     btn.__fcValBound = true;
-
     const handler = () => updateButtonActiveState(btn, scopeEl);
-    // перша ініціалізація
     handler();
-
-    // делеговані події на всю область форми
     scopeEl.addEventListener('input', handler);
     scopeEl.addEventListener('change', handler);
   }
@@ -149,27 +161,29 @@
       const scopeEl = document.querySelector(scopeClass);
       if (!scopeEl) {
         console.warn('[form-components] scope element not found:', scopeClass);
+        btn.disabled = true;
       } else {
-        // підвʼязуємо live‑перевірку і оновлення класу active
         bindValidation(btn, scopeEl);
       }
 
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-
         const scopeElNow = document.querySelector(scopeClass);
         if (!scopeElNow) {
           console.warn('[form-components] scope element not found:', scopeClass);
           alert('Не знайдено контейнер форми: ' + scopeClass);
           return;
         }
-
+        if (!isScopeComplete(scopeElNow)) {
+          alert('Перевірте правильність заповнення полів.');
+          updateButtonActiveState(btn, scopeElNow);
+          return;
+        }
         sendForm({ action, method, scopeEl: scopeElNow, button: btn, successMessage, errorMessage });
       });
     });
   }
 
   document.addEventListener('DOMContentLoaded', () => initOnce(document));
-  // На випадок динамічних вставок
   document.addEventListener('wp-block-render', (e) => initOnce(e.target || document));
 })();

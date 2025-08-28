@@ -29,9 +29,30 @@
 }
 
 /* активний стан */
+// .consent-checkbox .cc-input:checked{
+//   background: linear-gradient(45deg, #7b61ff, #6C3088);
+//   box-shadow: inset 0 0 0 2px #fff;
+// }
+
 .consent-checkbox .cc-input:checked{
-  background: linear-gradient(45deg, #7b61ff, #6C3088);
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10"><path d="M1 5l3 3 7-7" stroke="%23fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') center 55%/10px 10px no-repeat,
+    linear-gradient(45deg, #7b61ff, #6C3088);
   box-shadow: inset 0 0 0 2px #fff;
+}
+
+
+/* галочка */
+.consent-checkbox .cc-input:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 /* фокус */

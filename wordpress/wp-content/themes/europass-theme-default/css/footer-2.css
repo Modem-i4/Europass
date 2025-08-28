@@ -138,10 +138,15 @@ footer.wp-block-template-part nav.wp-block-navigation li{
     display: block !important;
   }
 }
+
 /* ===================== MOBILE (≤960px) ===================== */
 /* простий вертикальний список; підменю відкривається по кліку */
 @media (max-width: 960px){
 
+
+  footer .wp-block-navigation {
+    display: none !important;
+  }
   footer .show-on-mobile {
     display: block !important;
   }
@@ -254,10 +259,17 @@ footer .open-on-click.wp-block-navigation-submenu > .wp-block-navigation__submen
 
 
 /* Якщо потрібен жовтий */
-footer .wp-block-navigation-item.current-menu-item 
-.wp-block-navigation-item__label {
+/* Скинемо підсвітку для батьківських пунктів/категорій */
+footer li.current-menu-ancestor .wp-block-navigation-item__label,
+footer li.has-child.current-menu-item > .wp-block-navigation-item__content .wp-block-navigation-item__label {
+  color: inherit !important;
+}
+
+/* Підсвічуємо тільки точний активний лінк */
+footer a[aria-current="page"] .wp-block-navigation-item__label {
   color: #fff56e !important;
 }
+
 
 /* ===== ЖОВТА СМУГА ===== */
 
