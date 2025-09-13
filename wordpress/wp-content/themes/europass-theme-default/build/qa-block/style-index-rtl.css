@@ -1,1 +1,114 @@
-.qa-item{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:46px;box-shadow:0 4px 6px 0 rgba(0,0,0,.251);overflow:hidden;transition:box-shadow .25s ease,background-color .25s ease,border-color .25s ease}.qa-summary{align-items:center;background:#e5e5ea;border:0;color:#575756;cursor:pointer;display:flex;font-family:var(--wp--preset--font-family--noto-sans);font-size:16px;font-weight:600;gap:12px;list-style:none;min-height:70px;padding:16px 18px;text-align:right;transition:background-color .25s ease,color .25s ease;-webkit-user-select:none;-moz-user-select:none;user-select:none;width:100%}.qa-summary::-webkit-details-marker{display:none}.qa-summary:hover{background:#f5f5f8}.qa-arrow{flex:0 0 20px;height:20px;position:relative;width:20px}.qa-arrow:before{border-bottom:2px solid #6b7280;border-left:2px solid #6b7280;content:"";height:10px;inset:0;margin:auto;position:absolute;transform:rotate(45deg);transition:transform .25s ease,border-color .25s ease;width:10px}.qa-content{color:#374151;display:grid;grid-template-rows:0fr;line-height:1.6;opacity:0;padding:0 50px 0 18px;transition:grid-template-rows .35s ease,padding .25s ease,opacity .25s ease}.qa-content-inner{overflow:hidden}.qa-item.is-open{box-shadow:0 8px 10px 0 rgba(0,0,0,.251)}.qa-item.is-open>.qa-summary{background:#9ca3af;color:#fff}.qa-item.is-open .qa-arrow:before{border-color:#fff;transform:rotate(-45deg)}.qa-item.is-open .qa-content{grid-template-rows:1fr;opacity:1;padding:22px 50px 27px 18px}@media(min-width:780px){.qa-summary:hover .qa-arrow:before{border-color:#111827}}@media(prefers-reduced-motion:reduce){.qa-arrow:before,.qa-content,.qa-item,.qa-summary{transition:none!important}}
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/qa-block/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/* один елемент Q&A */
+.qa-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 46px;
+  background: #f3f4f6;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.2509803922);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* summary + стрілка */
+.qa-summary {
+  list-style: none;
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: var(--wp--preset--font-family--noto-sans);
+  color: #575756;
+  background: #e5e5ea;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: 100%;
+  text-align: right;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.qa-summary::-webkit-details-marker {
+  display: none;
+}
+
+.qa-summary:hover {
+  background: #f5f5f8;
+}
+
+/* chevron-стрілка (ВНИЗ у закритому) — як ти хотів */
+.qa-arrow {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  position: relative;
+}
+
+.qa-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #6b7280;
+  border-bottom: 2px solid #6b7280;
+  transform: rotate(45deg); /* вниз */
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+/* контент — CSS Grid акордеон БЕЗ ривків */
+.qa-content {
+  /* візуал */
+  padding: 0 50px 0 18px; /* top/bottom = 0 в закритому */
+  color: #374151;
+  line-height: 1.6;
+  /* магія: анімуємо рядок grid */
+  display: grid;
+  grid-template-rows: 0fr; /* закрито */
+  transition: grid-template-rows 0.35s ease, padding 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.qa-content-inner {
+  overflow: hidden;
+} /* саме тут відбувається обрізання */
+/* відкритий стан класом */
+.qa-item.is-open {
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2509803922);
+}
+
+.qa-item.is-open > .qa-summary {
+  background: #9ca3af;
+  color: #ffffff;
+}
+
+.qa-item.is-open .qa-arrow::before {
+  transform: rotate(-45deg);
+  border-color: #ffffff;
+}
+
+.qa-item.is-open .qa-content {
+  grid-template-rows: 1fr; /* відкрито */
+  padding: 22px 50px 27px 18px;
+  opacity: 1;
+}
+
+@media (min-width: 780px) {
+  /* hover-ефект */
+  .qa-summary:hover .qa-arrow::before {
+    border-color: #111827;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qa-item, .qa-summary, .qa-arrow::before, .qa-content {
+    transition: none !important;
+  }
+}

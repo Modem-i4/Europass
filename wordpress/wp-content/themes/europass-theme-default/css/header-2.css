@@ -205,6 +205,33 @@ header .wp-element-button:hover {
 		url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="%23C65094"/><stop offset="50%" stop-color="%234884C3"/><stop offset="100%" stop-color="%236C3088"/></linearGradient></defs><polygon points="0,9 18,12 50,10 82,13 100,9 100,20 0,20" fill="url(%23g)"/></svg>') bottom center / 100% 160px no-repeat,
 		linear-gradient(180deg, #f3d7e8 0%, #dce6f4 50%, #e9dff1 100%) center / 100% 100% no-repeat;
 	}
+
+	header .wp-block-navigation__responsive-container-content {
+		padding-top: 1em !important;
+	}
+
+	header .flag-uk::before,
+	header .flag-en::before {
+		content: "";
+		display: inline-block;
+		width: 1.2em;      /* ширина прапора */
+		height: 0.9em;     /* висота прапора */
+		margin-right: 0.4em;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		vertical-align: middle;
+	}
+
+	/* ТУТ вставиш свої URI */
+	header .flag-uk::before {
+		background-image: url("/wp-content/plugins/translatepress-multilingual/assets/flags/4x3/uk.svg");
+	}
+
+	header .flag-en::before {
+		background-image: url("/wp-content/plugins/translatepress-multilingual/assets/flags/4x3/en_US.svg");
+	}
+
 }
 
 

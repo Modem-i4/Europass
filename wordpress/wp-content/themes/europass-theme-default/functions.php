@@ -34,8 +34,11 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'editor-styles' );
     add_editor_style( 'css/style.css' );
 });
+wp_set_script_translations('trp-block-controls', 'translatepress-multilingual', plugin_dir_path(__FILE__) . 'languages/plugins');
 
 require_once get_template_directory() . '/includes/pdf-search-index.php';
 require_once get_template_directory() . '/includes/permalinks.php';
 require_once get_template_directory() . '/includes/create-content.php';
 require_once get_template_directory() . '/includes/adjust-menus.php';
+require_once get_template_directory() . '/includes/tp-cleanup.php';
+require_once get_template_directory() . '/includes/lang.php';

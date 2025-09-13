@@ -410,5 +410,47 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./frontend.js'
+	),
+	'switch-language' => array(
+		'apiVersion' => 2,
+		'name' => 'parts-blocks/switch-language',
+		'title' => 'Перемкнути мову — навігація',
+		'category' => 'parts-blocks',
+		'icon' => 'translation',
+		'description' => 'Пункт меню, що автоматично перемикає між / та /en/.',
+		'textdomain' => 'parts-blocks',
+		'version' => '1.0.0',
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'preserveLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showFlag' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => 'English'
+			),
+			'className' => array(
+				'type' => 'string',
+				'default' => 'pb-lang-switch'
+			)
+		),
+		'parent' => array(
+			'core/navigation'
+		),
+		'editorScript' => 'file:./index.js',
+		'viewScript' => 'file:./index.js',
+		'style' => 'file:./style-index.css'
 	)
 );

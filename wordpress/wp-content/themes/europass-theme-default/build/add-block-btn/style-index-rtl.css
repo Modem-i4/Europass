@@ -1,1 +1,26 @@
-.add-block-btn{padding:1.5rem;text-align:center}.add-block-btn .components-button{background-color:#4c81c1;border:none;border-radius:999px;box-shadow:0 2px 4px rgba(0,0,0,.1);color:#fff;font-size:15px;font-weight:600;padding:.6rem 1.2rem;transition:background-color .2s ease,transform .15s ease}.add-block-btn .components-button:hover{background-color:#166ec3;transform:scale(1.03)}.add-block-btn .components-button:focus{box-shadow:0 0 0 3px rgba(30,135,240,.4);outline:none}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/add-block-btn/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+.add-block-btn {
+  padding: 1.5rem;
+  text-align: center;
+}
+.add-block-btn .components-button {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  background-color: #4c81c1;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.add-block-btn .components-button:hover {
+  background-color: #166ec3;
+  transform: scale(1.03);
+}
+.add-block-btn .components-button:focus {
+  box-shadow: 0 0 0 3px rgba(30, 135, 240, 0.4);
+  outline: none;
+}

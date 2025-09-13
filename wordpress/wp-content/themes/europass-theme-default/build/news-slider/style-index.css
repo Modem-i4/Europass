@@ -1,1 +1,106 @@
-:root{--nav-outside:96px;--nav-size:48px;--nav-gap:8px}.swiper-container{overflow:visible;padding-inline:calc(var(--nav-outside) + var(--nav-gap));position:relative}.news-slider.swiper{position:relative}.news-slider.swiper .swiper-wrapper{align-items:stretch;padding:25px 0}.news-slider.swiper .swiper-slide{height:auto}.swiper-button-next,.swiper-button-prev{align-items:center;background:#e5e5ea;border-radius:50%;box-shadow:0 4px 6px 0 rgba(0,0,0,.251);color:#575756;display:flex;height:var(--nav-size);justify-content:center;position:absolute;top:50%;transform:translateY(-50%);transition:transform .1s ease;width:var(--nav-size);z-index:10}.swiper-button-next:after,.swiper-button-prev:after{font-size:16px;font-weight:700}.swiper-button-prev{left:var(--nav-gap)}.swiper-button-next{right:var(--nav-gap)}.swiper-pagination{margin-top:18px;position:static!important;text-align:center}.swiper-pagination .swiper-pagination-bullet{background:#e5e5ea;border-radius:50%;height:15px;margin:0 6px!important;opacity:1;transition:transform .2s ease,background-color .2s ease;width:15px}.swiper-pagination .swiper-pagination-bullet-active{background:#d1d1d6;transform:scale(1.25)}@media(max-width:1024px){:root{--nav-outside:20px;--nav-size:44px}}@media(max-width:768px){:root{--nav-outside:12px;--nav-size:42px}}@media(max-width:480px){:root{--nav-outside:8px;--nav-size:36px}.swiper-button-next,.swiper-button-prev{box-shadow:none}}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/news-slider/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+:root {
+  --nav-outside: 96px;
+  --nav-size: 48px;
+  --nav-gap: 8px;
+}
+
+/* ===== Slider container (жолоб під стрілки) */
+.swiper-container {
+  position: relative;
+  padding-inline: calc(var(--nav-outside) + var(--nav-gap));
+  overflow: visible;
+}
+
+/* база позиціювання для стрілок */
+.news-slider.swiper {
+  position: relative;
+}
+.news-slider.swiper .swiper-wrapper {
+  align-items: stretch;
+  padding: 25px 0;
+}
+.news-slider.swiper .swiper-slide {
+  height: auto;
+}
+
+/* ===== Arrows (всередині жолоба) */
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  width: var(--nav-size);
+  height: var(--nav-size);
+  border-radius: 50%;
+  background: #e5e5ea;
+  color: #575756;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2509803922);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transform: translateY(-50%);
+  transition: transform 0.1s ease;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.swiper-button-prev {
+  left: var(--nav-gap);
+}
+
+.swiper-button-next {
+  right: var(--nav-gap);
+}
+
+/* ===== Pagination */
+.swiper-pagination {
+  position: static !important;
+  margin-top: 18px;
+  text-align: center;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #e5e5ea;
+  opacity: 1;
+  margin: 0 6px !important;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #d1d1d6;
+  transform: scale(1.25);
+}
+
+/* ===== Responsive тільки для слайдера */
+@media (max-width: 1024px) {
+  :root {
+    --nav-outside: 20px;
+    --nav-size: 44px;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --nav-outside: 12px;
+    --nav-size: 42px;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --nav-outside: 8px;
+    --nav-size: 36px;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    box-shadow: none;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

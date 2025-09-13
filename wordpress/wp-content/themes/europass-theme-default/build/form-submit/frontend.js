@@ -1,1 +1,198 @@
-!function(){function e(e){if(!e)return!1;const t=String(e).trim().match(/^([^@]+)@([^@]+)$/);return!!t&&!!/^[A-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/i.test(t[1])&&!!/^[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(t[2])}function t(t){const o=Array.from(t.querySelectorAll('[data-form-input="1"][name]')).filter((e=>!e.disabled));if(!o.length)return!1;const r=o.some((e=>!0===e.required)),n=e=>!r||!0===e.required,s=new Map;for(const e of o)if(("checkbox"===e.type||"radio"===e.type)&&n(e)){const t=s.get(e.name)||{required:!1,anyChecked:!1,hasInputs:!1};t.required=!0,t.anyChecked=t.anyChecked||e.checked,t.hasInputs=!0,s.set(e.name,t)}for(const t of o){var a;if(!n(t))continue;if("checkbox"===t.type||"radio"===t.type)continue;const o=t.tagName.toLowerCase();if("email"===t.type||"1"===t.getAttribute("data-validate-email")){var c;const o=(null!==(c=t.value)&&void 0!==c?c:"").toString().trim();if(""===o||!e(o))return!1}else{var i;if("file"!==t.type){if("select"!==o){if(""===(null!==(a=t.value)&&void 0!==a?a:"").toString().trim())return!1}else if(""===(null!==(i=t.value)&&void 0!==i?i:"").trim())return!1}else if(!(t.files&&t.files.length>0))return!1}}for(const[,e]of s)if(e.required&&e.hasInputs&&!e.anyChecked)return!1;const d=t.querySelector('.cc-input[type="checkbox"][required]');return!(d&&!d.checked)}function o(e,o){const r=t(o);e.classList.toggle("active",r),e.disabled=!r}function r(e=document){e.querySelectorAll('[data-form-submit="1"]').forEach((e=>{if(e.__fcBound)return;e.__fcBound=!0;const r=e.getAttribute("data-scope-class")||".form-scope",n=e.getAttribute("data-action")||"/",s=(e.getAttribute("data-method")||"POST").toUpperCase(),a=e.getAttribute("data-success-message")||"OK",c=e.getAttribute("data-error-message")||"Error",i=document.querySelector(r);i?function(e,t){if(!t||e.__fcValBound)return;e.__fcValBound=!0;const r=()=>o(e,t);r(),t.addEventListener("input",r),t.addEventListener("change",r)}(e,i):(console.warn("[form-components] scope element not found:",r),e.disabled=!0),e.addEventListener("click",(i=>{i.preventDefault();const d=document.querySelector(r);return d?t(d)?void async function({action:e,method:t,scopeEl:r,button:n,successMessage:s,errorMessage:a}){const c=n.textContent;n.disabled=!0,n.classList.add("is-loading");try{const a=function(e){const t=e.querySelectorAll('[data-form-input="1"][name]'),o=new FormData;return t.forEach((e=>{var t;e.disabled||("checkbox"===e.type||"radio"===e.type?e.checked&&o.append(e.name,e.value||"on"):o.append(e.name,null!==(t=e.value)&&void 0!==t?t:""))})),o}(r),i={method:t||"POST"};if("GET"===(t||"POST").toUpperCase()){const t=new URLSearchParams;for(const[e,o]of a.entries())t.append(e,o);const o=e.includes("?")?`${e}&${t}`:`${e}?${t}`;if(!(await fetch(o,{method:"GET",credentials:"same-origin"})).ok)throw new Error("Network error")}else if(i.body=a,i.credentials="same-origin",!(await fetch(e,i)).ok)throw new Error("Network error");n.classList.remove("is-loading"),n.classList.add("is-success"),s&&alert(s),n.textContent=c,r.querySelectorAll('[data-form-input="1"][name]').forEach((e=>{"checkbox"===e.type||"radio"===e.type?e.checked=!1:(e.type,e.value="")})),o(n,r)}catch(e){n.classList.remove("is-loading"),n.classList.add("is-error"),a&&alert(a),console.error("[form-components] submit failed:",e),n.textContent=c}finally{setTimeout((()=>{n.classList.remove("is-success","is-error"),o(n,r)}),1200)}}({action:n,method:s,scopeEl:d,button:e,successMessage:a,errorMessage:c}):(alert("Перевірте правильність заповнення полів."),void o(e,d)):(console.warn("[form-components] scope element not found:",r),void alert("Не знайдено контейнер форми: "+r))}))}))}document.addEventListener("DOMContentLoaded",(()=>r(document))),document.addEventListener("wp-block-render",(e=>r(e.target||document)))}();
+/******/ (() => { // webpackBootstrap
+/*!*************************************!*\
+  !*** ./src/form-submit/frontend.js ***!
+  \*************************************/
+(function () {
+  function serializeScope(scopeEl) {
+    const fields = scopeEl.querySelectorAll('[data-form-input="1"][name]');
+    const fd = new FormData();
+    fields.forEach(el => {
+      if (el.disabled) return;
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (el.checked) fd.append(el.name, el.value || 'on');
+      } else {
+        var _el$value;
+        fd.append(el.name, (_el$value = el.value) !== null && _el$value !== void 0 ? _el$value : '');
+      }
+    });
+    return fd;
+  }
+  function isEmail(value) {
+    if (!value) return false;
+    const email = String(value).trim();
+    const m = email.match(/^([^@]+)@([^@]+)$/);
+    if (!m) return false;
+    const localOk = /^[A-Z0-9!#$%&'*+/=?^_`{|}~.-]+$/i.test(m[1]);
+    if (!localOk) return false;
+    const domainOk = /^[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(m[2]);
+    if (!domainOk) return false;
+    return true;
+  }
+  function isScopeComplete(scopeEl) {
+    const fields = Array.from(scopeEl.querySelectorAll('[data-form-input="1"][name]')).filter(el => !el.disabled);
+    if (!fields.length) return false;
+    const hasRequired = fields.some(el => el.required === true);
+    const considered = el => hasRequired ? el.required === true : true;
+    const groups = new Map();
+    for (const el of fields) {
+      if ((el.type === 'checkbox' || el.type === 'radio') && considered(el)) {
+        const g = groups.get(el.name) || {
+          required: false,
+          anyChecked: false,
+          hasInputs: false
+        };
+        g.required = true;
+        g.anyChecked = g.anyChecked || el.checked;
+        g.hasInputs = true;
+        groups.set(el.name, g);
+      }
+    }
+    for (const el of fields) {
+      var _el$value4;
+      if (!considered(el)) continue;
+      if (el.type === 'checkbox' || el.type === 'radio') continue;
+      const tag = el.tagName.toLowerCase();
+      const wantsEmailCheck = el.type === 'email' || el.getAttribute('data-validate-email') === '1';
+      if (wantsEmailCheck) {
+        var _el$value2;
+        const val = ((_el$value2 = el.value) !== null && _el$value2 !== void 0 ? _el$value2 : '').toString().trim();
+        if (val === '' || !isEmail(val)) return false;
+        continue;
+      }
+      if (el.type === 'file') {
+        if (!(el.files && el.files.length > 0)) return false;
+        continue;
+      }
+      if (tag === 'select') {
+        var _el$value3;
+        if (((_el$value3 = el.value) !== null && _el$value3 !== void 0 ? _el$value3 : '').trim() === '') return false;
+        continue;
+      }
+      if (((_el$value4 = el.value) !== null && _el$value4 !== void 0 ? _el$value4 : '').toString().trim() === '') return false;
+    }
+    for (const [, g] of groups) {
+      if (g.required && g.hasInputs && !g.anyChecked) return false;
+    }
+    const consentCheckbox = scopeEl.querySelector('.cc-input[type="checkbox"][required]');
+    if (consentCheckbox && !consentCheckbox.checked) return false;
+    return true;
+  }
+  function updateButtonActiveState(btn, scopeEl) {
+    const complete = isScopeComplete(scopeEl);
+    btn.classList.toggle('active', complete);
+    btn.disabled = !complete;
+  }
+  async function sendForm({
+    action,
+    method,
+    scopeEl,
+    button,
+    successMessage,
+    errorMessage
+  }) {
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.classList.add('is-loading');
+    try {
+      const fd = serializeScope(scopeEl);
+      const fetchOpts = {
+        method: method || 'POST'
+      };
+      if ((method || 'POST').toUpperCase() === 'GET') {
+        const params = new URLSearchParams();
+        for (const [k, v] of fd.entries()) params.append(k, v);
+        const url = action.includes('?') ? `${action}&${params}` : `${action}?${params}`;
+        const res = await fetch(url, {
+          method: 'GET',
+          credentials: 'same-origin'
+        });
+        if (!res.ok) throw new Error('Network error');
+      } else {
+        fetchOpts.body = fd;
+        fetchOpts.credentials = 'same-origin';
+        const res = await fetch(action, fetchOpts);
+        if (!res.ok) throw new Error('Network error');
+      }
+      button.classList.remove('is-loading');
+      button.classList.add('is-success');
+      if (successMessage) alert(successMessage);
+      button.textContent = originalText;
+
+      // очищення форми після успіху
+      scopeEl.querySelectorAll('[data-form-input="1"][name]').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          el.checked = false;
+        } else if (el.type === 'file') {
+          el.value = '';
+        } else {
+          el.value = '';
+        }
+      });
+      updateButtonActiveState(button, scopeEl);
+    } catch (e) {
+      button.classList.remove('is-loading');
+      button.classList.add('is-error');
+      if (errorMessage) alert(errorMessage);
+      console.error('[form-components] submit failed:', e);
+      button.textContent = originalText;
+    } finally {
+      setTimeout(() => {
+        button.classList.remove('is-success', 'is-error');
+        updateButtonActiveState(button, scopeEl);
+      }, 1200);
+    }
+  }
+  function bindValidation(btn, scopeEl) {
+    if (!scopeEl || btn.__fcValBound) return;
+    btn.__fcValBound = true;
+    const handler = () => updateButtonActiveState(btn, scopeEl);
+    handler();
+    scopeEl.addEventListener('input', handler);
+    scopeEl.addEventListener('change', handler);
+  }
+  function initOnce(root = document) {
+    root.querySelectorAll('[data-form-submit="1"]').forEach(btn => {
+      if (btn.__fcBound) return;
+      btn.__fcBound = true;
+      const scopeClass = btn.getAttribute('data-scope-class') || '.form-scope';
+      const action = btn.getAttribute('data-action') || '/';
+      const method = (btn.getAttribute('data-method') || 'POST').toUpperCase();
+      const successMessage = btn.getAttribute('data-success-message') || 'OK';
+      const errorMessage = btn.getAttribute('data-error-message') || 'Error';
+      const scopeEl = document.querySelector(scopeClass);
+      if (!scopeEl) {
+        console.warn('[form-components] scope element not found:', scopeClass);
+        btn.disabled = true;
+      } else {
+        bindValidation(btn, scopeEl);
+      }
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const scopeElNow = document.querySelector(scopeClass);
+        if (!scopeElNow) {
+          console.warn('[form-components] scope element not found:', scopeClass);
+          alert('Не знайдено контейнер форми: ' + scopeClass);
+          return;
+        }
+        if (!isScopeComplete(scopeElNow)) {
+          alert('Перевірте правильність заповнення полів.');
+          updateButtonActiveState(btn, scopeElNow);
+          return;
+        }
+        sendForm({
+          action,
+          method,
+          scopeEl: scopeElNow,
+          button: btn,
+          successMessage,
+          errorMessage
+        });
+      });
+    });
+  }
+  document.addEventListener('DOMContentLoaded', () => initOnce(document));
+  document.addEventListener('wp-block-render', e => initOnce(e.target || document));
+})();
+/******/ })()
+;
+//# sourceMappingURL=frontend.js.map
