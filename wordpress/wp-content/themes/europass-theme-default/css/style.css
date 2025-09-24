@@ -38,6 +38,9 @@
 	padding-left: 1.5em;
 }
 
+.justify-p p {
+	text-align: justify;
+}
 
 @media (max-width: 800px) {
 	.pc-only {
