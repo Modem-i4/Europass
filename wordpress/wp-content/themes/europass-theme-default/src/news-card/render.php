@@ -40,7 +40,7 @@ $date_diff = human_time_diff(
 		<div class="card-gradient-bar"></div>
 
 		<div class="card-content">
-			<h3 class="card-title"><?php echo esc_html( $title ); ?></h3>
+			<div class="card-title"><?php echo esc_html( $title ); ?></div>
             <div class="card-excerp"><?php echo esc_html( $excerpt ); ?></div>
 			<div class="card-meta">
 				<div class="card-date"><?php echo esc_html( $date_diff ); ?></div>

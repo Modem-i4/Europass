@@ -44,7 +44,7 @@
 .card-gradient-bar { height: 20px; flex: 0 0 auto; background: linear-gradient(88deg, #c65094 0%, #4884c3 49.52%, #6c3088 100%); }
 .card-content { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
 .card-title {  
-  margin: 0; color: #1a1a1a; line-height: 1.15; font-size: clamp(20px, 1.2vw + 14px, 28px); 
+  margin: 0; color: #1a1a1a; line-height: 1.15; font-size: clamp(20px, 1.2vw + 14px, 28px); font-weight: bold;
 }
 .card-meta { display: flex; flex-direction: column; gap: 8px; font-size: 16px; color: #6b7280; }
 .card-meta .card-type { color: #4a4f58; }

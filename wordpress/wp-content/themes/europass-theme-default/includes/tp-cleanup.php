@@ -1,4 +1,20 @@
 <?php
+
+add_filter('do_shortcode_tag', function ($out) {
+    if (strpos($out, 'trp-shortcode-overlay') === false) return $out;
+    if (preg_match('/aria-label=|aria-labelledby=/', $out)) return $out;
+
+    $label = (strpos(get_locale(), 'uk_') === 0) ? 'Вибір мови' : 'Language switcher';
+
+    return preg_replace(
+        '/(<div[^>]*class="[^"]*trp-shortcode-overlay[^"]*"[^>]*role="listbox"[^>]*)(>)/i',
+        '$1 aria-label="' . esc_attr($label) . '"$2',
+        $out,
+        1
+    ) ?: $out;
+}, 10, 1);
+
+
 add_action('wp_head', function () {
   if (empty($_GET['trp-edit-translation'])) return;
   ?>

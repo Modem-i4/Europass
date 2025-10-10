@@ -1,4 +1,7 @@
 <?php
+// вимкнути пункт "Autoptimize" у верхній панелі
+add_filter('autoptimize_filter_toolbar_show', '__return_false');
+
 // ===== Disable comments admin-wide for THIS THEME only =====
 
 // 1) Прибираємо підтримку коментарів/треκбеків у всіх типів записів
